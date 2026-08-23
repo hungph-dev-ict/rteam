@@ -19,6 +19,10 @@ frontend/dist/
 # Local data & uploads
 data/resumes/*
 !data/resumes/.gitkeep
+data/app.sqlite
+data/evaluations.csv
+data/automation/run_history.json
+*.sqlite
 *.sqlite3
 *.db
 
