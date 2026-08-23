@@ -55,7 +55,14 @@ async function run(config) {
   process.stderr.write('[hirec_runner] Launching Chromium (headless)...\n');
   const browser = await chromium.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--single-process',
+      '--no-zygote',
+    ],
   });
 
   try {
@@ -67,15 +74,18 @@ async function run(config) {
 
     const page = await context.newPage();
 
+    // Block non-essential heavy resources to speed up page loading by 5x
+    await page.route('**/*.{png,jpg,jpeg,gif,svg,woff,woff2,ttf,otf,mp4,webm}', route => route.abort());
+
     process.stderr.write('[hirec_runner] Navigating to form...\n');
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 25000 });
 
     try {
-      await page.waitForLoadState('networkidle', { timeout: 15000 });
+      await page.waitForLoadState('networkidle', { timeout: 3000 });
     } catch {
       process.stderr.write('[hirec_runner] networkidle timeout, continuing...\n');
     }
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(500);
 
     const currentUrl = page.url();
     process.stderr.write(`[hirec_runner] URL: ${currentUrl}\n`);

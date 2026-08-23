@@ -37,18 +37,30 @@ async function main() {
   ].filter(c => c.value);
 
   process.stderr.write('[parse_form_url] Launching Chromium (headless)...\n');
-  const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await chromium.launch({
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--single-process',
+      '--no-zygote',
+    ],
+  });
 
   try {
     const context = await browser.newContext({ ignoreHTTPSErrors: true });
     if (cookies.length) await context.addCookies(cookies);
 
     const page = await context.newPage();
-    process.stderr.write(`[parse_form_url] Navigating to: ${url}\n`);
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.route('**/*.{png,jpg,jpeg,gif,svg,woff,woff2,ttf,otf,mp4,webm}', route => route.abort());
 
-    try { await page.waitForLoadState('networkidle', { timeout: 15000 }); } catch {}
-    await page.waitForTimeout(3000);
+    process.stderr.write(`[parse_form_url] Navigating to: ${url}\n`);
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 25000 });
+
+    try { await page.waitForLoadState('networkidle', { timeout: 3000 }); } catch {}
+    await page.waitForTimeout(500);
 
     // Extract form structure
     const elements = await page.evaluate(() => {
