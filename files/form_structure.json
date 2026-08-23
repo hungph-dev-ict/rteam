@@ -1,0 +1,3356 @@
+{
+  "allInputs": [
+    {
+      "id": "rc_select_0",
+      "name": "",
+      "type": "search",
+      "value": "",
+      "placeholder": "",
+      "className": "ant-select-selection-search-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N1",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N1-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2+",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3+",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N4",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N5",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "No",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N1",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N1-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2+",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3+",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N4",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N5",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "No",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N1",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N1-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2+",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3+",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N4",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N5",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "No",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N1",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N1-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2+",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N2-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3+",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N3-",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N4",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "N5",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "No",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0-No English",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1-Elementary (Toeic>300)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2-Intermediate (Toeic>450)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3-Advanced (Toeic>730)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4-Professional (Toeic>875)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Native",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Tier 1: Todai, Tokodai, Kyodai",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Tier 2: Tohoku, Meikodai, Osaka, HEDSPI",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Tier 3: Waseda, Kyushu, Keio, Tsukuba, Chiba, Bách Khoa",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Tier 4: Tự nhiên, FU, Bưu Chính",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Tier 0: Other",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "PhD",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Master",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Bachelor (JP)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Bachelor (VN)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "Senmon & Other",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "<1 year",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1 to <3 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3 to <6 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6 to <9 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "9 to <12 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "12 to 15 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": ">15 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "<1 year",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1 to <3 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3 to <6 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6 to <9 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "9 to <12 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "12 to 15 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": ">15 years",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "0_No knowledge",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "1_Fundamental (知っている)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "2_Limited Experience (出来る)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "3_Intermeadiate  (使いこなせる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "4_Advanced  (教えられる)",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "5_Expert ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "",
+      "name": "",
+      "type": "radio",
+      "value": "6_Master ",
+      "placeholder": "",
+      "className": "ant-radio-input"
+    },
+    {
+      "id": "Plus point_Working location",
+      "name": "",
+      "type": "text",
+      "value": "",
+      "placeholder": "Enter your answer",
+      "className": "ant-input"
+    },
+    {
+      "id": "Plus point_Experience of working in FSOFT (year)",
+      "name": "",
+      "type": "text",
+      "value": "",
+      "placeholder": "Enter your answer",
+      "className": "ant-input"
+    },
+    {
+      "id": "Plus point_Valuable skill",
+      "name": "",
+      "type": "text",
+      "value": "",
+      "placeholder": "Enter your answer",
+      "className": "ant-input"
+    },
+    {
+      "id": "Job rank Assessed_BA",
+      "name": "",
+      "type": "text",
+      "value": "",
+      "placeholder": "Enter your answer",
+      "className": "ant-input"
+    }
+  ],
+  "textareas": [
+    {
+      "id": "Japanese_Listening_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Japanese_Speaking_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Japanese_Writing_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Japanese_Reading_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "English__Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Academic background__Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Educational level__Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "IT Experience__Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Working experience in JP__Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Business a Skills_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Domain Knowledge_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_General Technology Understanding_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Technology Solution for Domain_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Tools (Office, Communication, Requirement Tools)_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Facilitation and Negotiation Skills_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Research and Analytical Skills_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Organizational Skills_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Stress Management Skills_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "BA_Active mindset_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Management skill_General Management (Stakeholder/Contract/Issue/Risk/Resource…)_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Management skill_Scope Management_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Management skill_Task Management_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Management skill_Quality Management_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Soft Skill_Presentation/Communication Skills_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Soft Skill_Time Management/Problem solving_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Soft Skill_Teamwork_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Soft Skill_Business manner_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Soft Skill_Learning Ability/Adaptable Ability_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Soft Skill_Ability to handle pressure at work_Reason",
+      "name": "",
+      "placeholder": "Reason description"
+    },
+    {
+      "id": "Conclusion_",
+      "name": "",
+      "placeholder": "Enter your answer"
+    },
+    {
+      "id": "Note_",
+      "name": "",
+      "placeholder": "Enter your answer"
+    },
+    {
+      "id": "",
+      "name": "",
+      "placeholder": ""
+    }
+  ],
+  "radioByName": {
+    "unnamed": [
+      {
+        "id": "",
+        "value": "N1"
+      },
+      {
+        "id": "",
+        "value": "N1-"
+      },
+      {
+        "id": "",
+        "value": "N2+"
+      },
+      {
+        "id": "",
+        "value": "N2"
+      },
+      {
+        "id": "",
+        "value": "N2-"
+      },
+      {
+        "id": "",
+        "value": "N3+"
+      },
+      {
+        "id": "",
+        "value": "N3"
+      },
+      {
+        "id": "",
+        "value": "N3-"
+      },
+      {
+        "id": "",
+        "value": "N4"
+      },
+      {
+        "id": "",
+        "value": "N5"
+      },
+      {
+        "id": "",
+        "value": "No"
+      },
+      {
+        "id": "",
+        "value": "N1"
+      },
+      {
+        "id": "",
+        "value": "N1-"
+      },
+      {
+        "id": "",
+        "value": "N2+"
+      },
+      {
+        "id": "",
+        "value": "N2"
+      },
+      {
+        "id": "",
+        "value": "N2-"
+      },
+      {
+        "id": "",
+        "value": "N3+"
+      },
+      {
+        "id": "",
+        "value": "N3"
+      },
+      {
+        "id": "",
+        "value": "N3-"
+      },
+      {
+        "id": "",
+        "value": "N4"
+      },
+      {
+        "id": "",
+        "value": "N5"
+      },
+      {
+        "id": "",
+        "value": "No"
+      },
+      {
+        "id": "",
+        "value": "N1"
+      },
+      {
+        "id": "",
+        "value": "N1-"
+      },
+      {
+        "id": "",
+        "value": "N2+"
+      },
+      {
+        "id": "",
+        "value": "N2"
+      },
+      {
+        "id": "",
+        "value": "N2-"
+      },
+      {
+        "id": "",
+        "value": "N3+"
+      },
+      {
+        "id": "",
+        "value": "N3"
+      },
+      {
+        "id": "",
+        "value": "N3-"
+      },
+      {
+        "id": "",
+        "value": "N4"
+      },
+      {
+        "id": "",
+        "value": "N5"
+      },
+      {
+        "id": "",
+        "value": "No"
+      },
+      {
+        "id": "",
+        "value": "N1"
+      },
+      {
+        "id": "",
+        "value": "N1-"
+      },
+      {
+        "id": "",
+        "value": "N2+"
+      },
+      {
+        "id": "",
+        "value": "N2"
+      },
+      {
+        "id": "",
+        "value": "N2-"
+      },
+      {
+        "id": "",
+        "value": "N3+"
+      },
+      {
+        "id": "",
+        "value": "N3"
+      },
+      {
+        "id": "",
+        "value": "N3-"
+      },
+      {
+        "id": "",
+        "value": "N4"
+      },
+      {
+        "id": "",
+        "value": "N5"
+      },
+      {
+        "id": "",
+        "value": "No"
+      },
+      {
+        "id": "",
+        "value": "0-No English"
+      },
+      {
+        "id": "",
+        "value": "1-Elementary (Toeic>300)"
+      },
+      {
+        "id": "",
+        "value": "2-Intermediate (Toeic>450)"
+      },
+      {
+        "id": "",
+        "value": "3-Advanced (Toeic>730)"
+      },
+      {
+        "id": "",
+        "value": "4-Professional (Toeic>875)"
+      },
+      {
+        "id": "",
+        "value": "5_Native"
+      },
+      {
+        "id": "",
+        "value": "Tier 1: Todai, Tokodai, Kyodai"
+      },
+      {
+        "id": "",
+        "value": "Tier 2: Tohoku, Meikodai, Osaka, HEDSPI"
+      },
+      {
+        "id": "",
+        "value": "Tier 3: Waseda, Kyushu, Keio, Tsukuba, Chiba, Bách Khoa"
+      },
+      {
+        "id": "",
+        "value": "Tier 4: Tự nhiên, FU, Bưu Chính"
+      },
+      {
+        "id": "",
+        "value": "Tier 0: Other"
+      },
+      {
+        "id": "",
+        "value": "PhD"
+      },
+      {
+        "id": "",
+        "value": "Master"
+      },
+      {
+        "id": "",
+        "value": "Bachelor (JP)"
+      },
+      {
+        "id": "",
+        "value": "Bachelor (VN)"
+      },
+      {
+        "id": "",
+        "value": "Senmon & Other"
+      },
+      {
+        "id": "",
+        "value": "<1 year"
+      },
+      {
+        "id": "",
+        "value": "1 to <3 years"
+      },
+      {
+        "id": "",
+        "value": "3 to <6 years"
+      },
+      {
+        "id": "",
+        "value": "6 to <9 years"
+      },
+      {
+        "id": "",
+        "value": "9 to <12 years"
+      },
+      {
+        "id": "",
+        "value": "12 to 15 years"
+      },
+      {
+        "id": "",
+        "value": ">15 years"
+      },
+      {
+        "id": "",
+        "value": "<1 year"
+      },
+      {
+        "id": "",
+        "value": "1 to <3 years"
+      },
+      {
+        "id": "",
+        "value": "3 to <6 years"
+      },
+      {
+        "id": "",
+        "value": "6 to <9 years"
+      },
+      {
+        "id": "",
+        "value": "9 to <12 years"
+      },
+      {
+        "id": "",
+        "value": "12 to 15 years"
+      },
+      {
+        "id": "",
+        "value": ">15 years"
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      },
+      {
+        "id": "",
+        "value": "0_No knowledge"
+      },
+      {
+        "id": "",
+        "value": "1_Fundamental (知っている)"
+      },
+      {
+        "id": "",
+        "value": "2_Limited Experience (出来る)"
+      },
+      {
+        "id": "",
+        "value": "3_Intermeadiate  (使いこなせる)"
+      },
+      {
+        "id": "",
+        "value": "4_Advanced  (教えられる)"
+      },
+      {
+        "id": "",
+        "value": "5_Expert "
+      },
+      {
+        "id": "",
+        "value": "6_Master "
+      }
+    ]
+  },
+  "hirecElements": [
+    {
+      "tag": "DIV",
+      "id": "Japanese_Listening_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Listening_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Speaking_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Speaking_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Writing_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Writing_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Reading_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Reading_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "English__choose",
+      "childInputs": [
+        "0-No English",
+        "1-Elementary (Toeic>300)",
+        "2-Intermediate (Toeic>450)",
+        "3-Advanced (Toeic>730)",
+        "4-Professional (Toeic>875)",
+        "5_Native"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "English__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Academic background__choose",
+      "childInputs": [
+        "Tier 1: Todai, Tokodai, Kyodai",
+        "Tier 2: Tohoku, Meikodai, Osaka, HEDSPI",
+        "Tier 3: Waseda, Kyushu, Keio, Tsukuba, Chiba, Bách Khoa",
+        "Tier 4: Tự nhiên, FU, Bưu Chính",
+        "Tier 0: Other"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Academic background__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Educational level__choose",
+      "childInputs": [
+        "PhD",
+        "Master",
+        "Bachelor (JP)",
+        "Bachelor (VN)",
+        "Senmon & Other"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Educational level__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "IT Experience__choose",
+      "childInputs": [
+        "<1 year",
+        "1 to <3 years",
+        "3 to <6 years",
+        "6 to <9 years",
+        "9 to <12 years",
+        "12 to 15 years",
+        ">15 years"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "IT Experience__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Working experience in JP__choose",
+      "childInputs": [
+        "<1 year",
+        "1 to <3 years",
+        "3 to <6 years",
+        "6 to <9 years",
+        "9 to <12 years",
+        "12 to 15 years",
+        ">15 years"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Working experience in JP__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Business a Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Business a Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Domain Knowledge_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Domain Knowledge_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_General Technology Understanding_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_General Technology Understanding_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Technology Solution for Domain_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Technology Solution for Domain_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Tools (Office, Communication, Requirement Tools)_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Tools (Office, Communication, Requirement Tools)_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Facilitation and Negotiation Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Facilitation and Negotiation Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Research and Analytical Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Research and Analytical Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Organizational Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Organizational Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Stress Management Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Stress Management Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Active mindset_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Active mindset_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_General Management (Stakeholder/Contract/Issue/Risk/Resource…)_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_General Management (Stakeholder/Contract/Issue/Risk/Resource…)_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Scope Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Scope Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Task Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Task Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Quality Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Quality Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Presentation/Communication Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Presentation/Communication Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Time Management/Problem solving_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Time Management/Problem solving_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Teamwork_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Teamwork_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Business manner_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Business manner_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Learning Ability/Adaptable Ability_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Learning Ability/Adaptable Ability_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Ability to handle pressure at work_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Ability to handle pressure at work_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Conclusion_",
+      "childInputs": []
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Note_",
+      "childInputs": []
+    }
+  ],
+  "buttons": [
+    {
+      "text": "",
+      "id": "",
+      "type": "button",
+      "className": "ant-btn ant-btn-default ant-btn-icon-only ant-dropdown-trigg"
+    },
+    {
+      "text": "Hoang Ngoc Diep (Interview Detail)",
+      "id": "",
+      "type": "button",
+      "className": "ant-btn ant-btn-link candidate_name"
+    },
+    {
+      "text": "Save draft",
+      "id": "",
+      "type": "button",
+      "className": "ant-btn ant-btn-default ant-btn-lg"
+    },
+    {
+      "text": "Submit",
+      "id": "",
+      "type": "button",
+      "className": "ant-btn ant-btn-primary ant-btn-lg"
+    },
+    {
+      "text": "",
+      "id": "chatbot-button",
+      "type": "button",
+      "className": "ant-btn ant-btn-primary ant-btn-circle ant-btn-lg ant-btn-ic"
+    }
+  ],
+  "bodyText": "HUNGPH5\nCandidate Name:\nHoang Ngoc Diep (Interview Detail)\nFeedback Form:\nFJP_InterviewChecklist_v1.1_BA\nJapanese\n1. Japanese\n\nListening\n\nN1\nN1-\nN2+\nN2\nN2-\nN3+\nN3\nN3-\nN4\nN5\nNo\nReason\n2. Japanese\n\nSpeaking\n\nN1\nN1-\nN2+\nN2\nN2-\nN3+\nN3\nN3-\nN4\nN5\nNo\nReason\n3. Japanese\n\nWriting\n\nN1\nN1-\nN2+\nN2\nN2-\nN3+\nN3\nN3-\nN4\nN5\nNo\nReason\n4. Japanese\n\nReading\n\nN1\nN1-\nN2+\nN2\nN2-\nN3+\nN3\nN3-\nN4\nN5\nNo\nReason\nEnglish\n1. English\n\n0-No English\n1-Elementary (Toeic>300)\n2-Intermediate (Toeic>450)\n3-Advanced (Toeic>730)\n4-Professional (Toeic>875)\n5_Native\nReason\nAcademic background\n1. Academic background\n\nTier 1: Todai, Tokodai, Kyodai\nTier 2: Tohoku, Meikodai, Osaka, HEDSPI\nTier 3: Waseda, Kyushu, Keio, Tsukuba, Chiba, Bách Khoa\nTier 4: Tự nhiên, FU, Bưu Chính\nTier 0: Other\nReason\nEducational level\n1. Educational level\n\nPhD\nMaster\nBachelor (JP)\nBachelor (VN)\nSenmon & Other\nReason\nIT Experience\n1. IT Experience\n\n<1 year\n1 to <3 years\n3 to <6 years\n6 to <9 years\n9 to <12 years\n12 to 15 years\n>15 years\nReason\nWorking experience in JP\n1. Working experience in JP\n\n<1 year\n1 to <3 years\n3 to <6 years\n6 to <9 years\n9 to <12 years\n12 to 15 years\n>15 years\nReason\nBA\n1. BA\n\nBusiness a Skills\n\n0_No knowledge\n1_Fundamental (知っている)\n2_Limited Experience (出来る)\n3_Intermeadiate (使いこなせる)\n4_Advanced (教えられる)\n5_Expert\n6_Master\nReason\n2. BA\n\nDomain Knowledge\n\n0_No knowledge\n1_Fundamental (知っている)\n2_Limited Experience (出来る)\n3_Intermeadiate (使いこなせる)\n4_Advanced (教えられる)\n5_Expert\n6_Master\nReason\n3. BA\n\nGeneral Technology Understanding\n\n0_No knowledge\n1_Fundamental (知っている)\n2_Limited Experience (出来る)\n3_Intermeadiate (使いこなせる)\n4_Advanced (教えられる)\n5_Expert\n6_Master\nReason\n4. BA\n\nTechnology Solution for Domain\n\n0_No knowledge\n1_Fundamental (知っている)\n2_Limited Experience (出来る)\n3_Intermeadiate (使いこなせる)\n4_Advanced (教えられる)\n5_Expert\n6_Master\nReason\n5. BA\n\nTools (Office, Communication, Requirement Tools)\n\n0_No knowledge\n1_Fundamental (知っている)\n2_Limited Experience (出来る)\n3_Intermeadiate (使いこなせる)\n4_Advanced (教えられる)\n5_Expert\n6_Master\nReason\n6. "
+}

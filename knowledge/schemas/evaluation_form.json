@@ -1,0 +1,289 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EvaluationResult",
+  "type": "object",
+  "properties": {
+    "type_working": {
+      "type": "string",
+      "description": "Type working (e.g. Remote, Onsite, Hybrid)"
+    },
+    "job_level": {
+      "type": "string",
+      "description": "Recommended job level"
+    },
+    "education": {
+      "type": "string",
+      "description": "Education details"
+    },
+    "achievements": {
+      "type": "string",
+      "description": "Candidate achievements"
+    },
+    "can_onsite": {
+      "type": "string",
+      "description": "Can Onsite availability (Yes/No)"
+    },
+    "work_experience": {
+      "type": "string",
+      "description": "Work experience summary"
+    },
+    "career_path": {
+      "type": "string",
+      "description": "Career path aspirations"
+    },
+    "strengths_at_work": {
+      "type": "string",
+      "description": "Strengths at work"
+    },
+    "experiences_score": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Applied Position Experience Score"
+    },
+    "experiences_reason": {
+      "type": "string",
+      "description": "Reason for experiences score"
+    },
+    "japanese_listening_level": {
+      "type": "string",
+      "enum": ["No knowledge", "Fundamental/N5", "Limited/N4", "Intermediate/N3", "Advanced/N2", "Fluently/N1"],
+      "description": "Japanese Listening proficiency"
+    },
+    "japanese_listening_reason": {
+      "type": "string",
+      "description": "Reason for Japanese listening level"
+    },
+    "japanese_speaking_level": {
+      "type": "string",
+      "enum": ["No knowledge", "Fundamental/N5", "Limited/N4", "Intermediate/N3", "Advanced/N2", "Fluently/N1"],
+      "description": "Japanese Speaking proficiency"
+    },
+    "japanese_speaking_reason": {
+      "type": "string",
+      "description": "Reason for Japanese speaking level"
+    },
+    "japanese_writing_level": {
+      "type": "string",
+      "enum": ["No knowledge", "Fundamental/N5", "Limited/N4", "Intermediate/N3", "Advanced/N2", "Fluently/N1"],
+      "description": "Japanese Writing proficiency"
+    },
+    "japanese_writing_reason": {
+      "type": "string",
+      "description": "Reason for Japanese writing level"
+    },
+    "japanese_reading_level": {
+      "type": "string",
+      "enum": ["No knowledge", "Fundamental/N5", "Limited/N4", "Intermediate/N3", "Advanced/N2", "Fluently/N1"],
+      "description": "Japanese Reading proficiency"
+    },
+    "japanese_reading_reason": {
+      "type": "string",
+      "description": "Reason for Japanese reading level"
+    },
+    "japanese_presentation_level": {
+      "type": "string",
+      "enum": ["No knowledge", "Fundamental/N5", "Limited/N4", "Intermediate/N3", "Advanced/N2", "Fluently/N1"],
+      "description": "Japanese Presentation proficiency"
+    },
+    "japanese_presentation_reason": {
+      "type": "string",
+      "description": "Reason for Japanese presentation level"
+    },
+    "domain_knowledge_score": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Professional domain knowledge score"
+    },
+    "domain_knowledge_reason": {
+      "type": "string",
+      "description": "Reason for domain knowledge score"
+    },
+    "domain_career_consulting_score": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Workshop or career consulting experience score"
+    },
+    "domain_career_consulting_reason": {
+      "type": "string",
+      "description": "Reason for domain career consulting score"
+    },
+    "design_experience_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Level of design experience score"
+    },
+    "design_experience_reason": {
+      "type": "string",
+      "description": "Reason for design experience level"
+    },
+    "design_profession_made_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Profession made design score"
+    },
+    "design_profession_made_reason": {
+      "type": "string",
+      "description": "Reason for profession made design score"
+    },
+    "design_tools_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Design tools usage score"
+    },
+    "design_tools_reason": {
+      "type": "string",
+      "description": "Reason for design tools usage"
+    },
+    "design_database_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Design database/Data model/ERD score"
+    },
+    "design_database_reason": {
+      "type": "string",
+      "description": "Reason for design database level"
+    },
+    "software_tech_overview_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Experience implementing overview score"
+    },
+    "software_tech_overview_reason": {
+      "type": "string",
+      "description": "Reason for software tech overview"
+    },
+    "software_tech_competence_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Technical competence score"
+    },
+    "software_tech_competence_reason": {
+      "type": "string",
+      "description": "Reason for technical competence"
+    },
+    "software_tech_learning_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Ability to learn/search new technology score"
+    },
+    "software_tech_learning_reason": {
+      "type": "string",
+      "description": "Reason for software tech learning ability"
+    },
+    "test_experience_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Test experience (test case, execute test) score"
+    },
+    "test_experience_reason": {
+      "type": "string",
+      "description": "Reason for test experience level"
+    },
+    "test_plan_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Create test viewpoint, test plan score"
+    },
+    "test_plan_reason": {
+      "type": "string",
+      "description": "Reason for test plan creation level"
+    },
+    "management_project_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Project Management score"
+    },
+    "management_project_reason": {
+      "type": "string",
+      "description": "Reason for project management level"
+    },
+    "management_method_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Managing method score"
+    },
+    "management_method_reason": {
+      "type": "string",
+      "description": "Reason for managing method"
+    },
+    "management_cost_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Cost management score"
+    },
+    "management_cost_reason": {
+      "type": "string",
+      "description": "Reason for cost management level"
+    },
+    "management_org_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Organization score"
+    },
+    "management_org_reason": {
+      "type": "string",
+      "description": "Reason for organization level"
+    },
+    "softskill_communication_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Communication soft skill score"
+    },
+    "softskill_communication_reason": {
+      "type": "string",
+      "description": "Reason for communication level"
+    },
+    "softskill_teamwork_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Teamwork soft skill score"
+    },
+    "softskill_teamwork_reason": {
+      "type": "string",
+      "description": "Reason for teamwork level"
+    },
+    "softskill_manners_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Manners soft skill score"
+    },
+    "softskill_manners_reason": {
+      "type": "string",
+      "description": "Reason for manners level"
+    },
+    "softskill_character_level": {
+      "type": "string",
+      "enum": ["No knowledge/experience", "Fundamental awareness", "Limited Experience", "Intermediate", "Advanced", "Expert"],
+      "description": "Character soft skill score"
+    },
+    "softskill_character_reason": {
+      "type": "string",
+      "description": "Reason for character level"
+    },
+    "certifications": {
+      "type": "string",
+      "description": "Certifications"
+    },
+    "ai_proficiency_assessment_score": {
+      "type": "string",
+      "enum": [
+        "AI Mindset & Adoption Readiness-0.1",
+        "AI Tool Awareness & Landscape Understanding- 0.2",
+        "Prompting & AI Interaction Skills- 0.3",
+        "AI-assisted Development Usage- 0.4",
+        "Critical Thinking on AI Output (Trust vs Verify)- 0.6",
+        "AI Impact & Application Across SDLC- 0.8"
+      ],
+      "description": "AI Proficiency Assessment level score"
+    },
+    "ai_proficiency_assessment_reason": {
+      "type": "string",
+      "description": "Reason for AI proficiency level"
+    },
+    "conclusion": {
+      "type": "string",
+      "description": "Conclusion remarks"
+    }
+  },
+  "required": []
+}

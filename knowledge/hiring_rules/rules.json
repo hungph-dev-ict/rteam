@@ -1,0 +1,21 @@
+{
+  "role_benchmarks": {
+    "ba": {
+      "min_experience_years": 3,
+      "min_japanese_level": "N2"
+    },
+    "brse": {
+      "min_experience_years": 3,
+      "min_japanese_level": "N2"
+    },
+    "front_se": {
+      "min_experience_years": 2,
+      "min_japanese_level": "N3"
+    }
+  },
+  "evaluation_thresholds": {
+    "min_technical_score": 3,
+    "min_japanese_score": 3,
+    "min_outsourcing_fit_score": 3
+  }
+}

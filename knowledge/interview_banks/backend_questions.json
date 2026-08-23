@@ -1,0 +1,42 @@
+[
+  {
+    "topic": "Java & Concurrency",
+    "question": "What is the difference between Runnable and Callable in Java? How do they relate to ExecutorService?",
+    "expected_answer": "Runnable's run() method does not return a value and cannot throw checked exceptions, while Callable's call() method returns a Future object and can throw checked exceptions. Both can be submitted to an ExecutorService, which manages a pool of worker threads to run these tasks asynchronously.",
+    "red_flags": [
+      "Candidate does not know Callable returns a Future",
+      "Candidate thinks both can throw checked exceptions directly without wrapping"
+    ],
+    "level": "intermediate"
+  },
+  {
+    "topic": "Spring Boot & Performance",
+    "question": "How do you solve the N+1 select query problem in Spring Data JPA?",
+    "expected_answer": "Use JOIN FETCH in JPQL queries, @EntityGraph to specify eager loading for relationships selectively, or use hibernate's batch fetching size configuration.",
+    "red_flags": [
+      "Candidate has no idea what N+1 query means",
+      "Suggests setting EAGER fetch type globally (bad practice for large apps)"
+    ],
+    "level": "advanced"
+  },
+  {
+    "topic": "System Design & Scalability",
+    "question": "If your RDS database is hitting 100% CPU capacity in a high-read web application, what steps would you take to mitigate this?",
+    "expected_answer": "1. Analyze and optimize slow queries, add indexes.\n2. Implement a caching layer (Redis/Memcached) for hot data.\n3. Add RDS Read Replicas and distribute read traffic.\n4. Upgrade database instance class (vertical scaling).",
+    "red_flags": [
+      "Only suggests vertical scaling without mentioning query optimization or caching",
+      "Suggests sharding as the very first step (too complex and premature)"
+    ],
+    "level": "advanced"
+  },
+  {
+    "topic": "Bridge SE Collaboration",
+    "question": "How would you handle a situation where a Japanese client sends a vague specification for a feature? Explain the communication process.",
+    "expected_answer": "I would analyze the spec, list down assumptions and potential edge cases, draft a clarifying document (Q&A sheet), review it with the BrSE (Bridge SE) for Japanese phrasing, and present options to the client for validation.",
+    "red_flags": [
+      "Developer goes ahead and implements based on assumptions without asking",
+      "Waits indefinitely for client to update specs"
+    ],
+    "level": "intermediate"
+  }
+]

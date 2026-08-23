@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Name"
+    },
+    "base_tech": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Base Tech"
+    },
+    "available_date": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Available Date"
+    },
+    "skill": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Skill"
+    },
+    "evaluation": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Evaluation"
+    },
+    "location": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Location"
+    },
+    "honbu": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Honbu"
+    },
+    "project": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Project"
+    },
+    "interviewer_name": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Interviewer Name"
+    },
+    "internal_external": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Internal/External"
+    },
+    "rec_pic": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: REC PIC"
+    },
+    "available": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Available?"
+    },
+    "status": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Status"
+    },
+    "opp_no": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Opp No."
+    },
+    "rate_min85": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Rate(Min85)"
+    },
+    "note": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Note"
+    }
+  },
+  "required": [
+    "name",
+    "available_date",
+    "skill"
+  ]
+}

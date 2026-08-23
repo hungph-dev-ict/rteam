@@ -1,0 +1,26 @@
+# Python virtual environment & cache
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node.js dependencies & build outputs
+node_modules/
+frontend/node_modules/
+files/node_modules/
+frontend/dist/
+
+# Environment variables
+.env
+.env.local
+
+# Local data & uploads
+data/resumes/*
+!data/resumes/.gitkeep
+*.sqlite3
+*.db
+
+# macOS files
+.DS_Store

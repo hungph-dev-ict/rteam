@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hirec Automation — Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0e14;
+      --surface: #13181f;
+      --surface2: #1a2030;
+      --border: #232b38;
+      --accent: #4f8ef7;
+      --accent2: #7c5cfc;
+      --green: #22d3a5;
+      --red: #f25c7a;
+      --yellow: #f5c542;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: linear-gradient(135deg, #0f1623 0%, #131c2f 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 0 20px rgba(79,142,247,0.4);
+    }
+
+    .logo h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+    .logo span { color: var(--muted); font-size: 13px; font-weight: 400; }
+
+    #status-badge {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: pulse 2s infinite;
+    }
+    .dot.online { background: var(--green); }
+    .dot.offline { background: var(--red); animation: none; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; padding: 20px; }
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .card-header .icon {
+      font-size: 18px;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(79,142,247,0.12);
+      border-radius: 8px;
+    }
+
+    .card-header h2 { font-size: 15px; font-weight: 600; }
+    .card-header p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .card-body { padding: 24px; }
+
+    /* ─── FORM ─── */
+    .form-group { margin-bottom: 18px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"], input[type="url"], textarea, select {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79,142,247,0.15);
+    }
+
+    textarea { min-height: 220px; }
+
+    .payload-textarea { min-height: 360px; }
+
+    /* ─── TOGGLE ─── */
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .toggle-label { font-size: 14px; font-weight: 500; }
+    .toggle-desc { font-size: 12px; color: var(--muted); }
+
+    .toggle {
+      position: relative;
+      width: 44px; height: 24px;
+    }
+
+    .toggle input { opacity: 0; width: 0; height: 0; }
+
+    .slider {
+      position: absolute; inset: 0;
+      background: var(--border);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .slider::before {
+      content: '';
+      position: absolute;
+      left: 3px; top: 3px;
+      width: 18px; height: 18px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .toggle input:checked + .slider { background: var(--green); }
+    .toggle input:checked + .slider::before { transform: translateX(20px); }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      box-shadow: 0 4px 15px rgba(79,142,247,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(79,142,247,0.45);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-row {
+      display: flex; gap: 10px; margin-top: 8px;
+    }
+
+    /* ─── LOADER ─── */
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── RESPONSE PANEL ─── */
+    .response-panel {
+      grid-column: 1 / -1;
+    }
+
+    .response-empty {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 12px;
+      padding: 60px 24px;
+      color: var(--muted);
+    }
+
+    .response-empty .empty-icon { font-size: 40px; opacity: 0.4; }
+    .response-empty p { font-size: 14px; }
+
+    pre#response-output {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-all;
+      padding: 24px;
+      min-height: 160px;
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      display: flex; gap: 16px;
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .stat {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px;
+    }
+
+    .stat-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+
+    .stat-val { font-weight: 700; font-size: 16px; }
+
+    /* ─── ENDPOINT PILLS ─── */
+    .endpoint-row {
+      display: flex; gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      transition: all 0.2s;
+    }
+
+    .pill:hover { border-color: var(--accent); }
+    .pill.active { background: rgba(79,142,247,0.15); border-color: var(--accent); color: var(--accent); }
+
+    .method-get { color: var(--green); }
+    .method-post { color: var(--yellow); }
+
+    /* ─── COLOR TOKENS ─── */
+    .token-key { color: #7dd3fc; }
+    .token-str { color: #86efac; }
+    .token-num { color: #fca5a5; }
+    .token-bool { color: #c4b5fd; }
+    .token-null { color: var(--muted); }
+
+    /* ─── STATUS BANNER ─── */
+    .banner {
+      padding: 12px 24px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .banner.success { background: rgba(34,211,165,0.1); color: var(--green); }
+    .banner.error { background: rgba(242,92,122,0.1); color: var(--red); }
+    .banner.loading { background: rgba(79,142,247,0.1); color: var(--accent); }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">🤖</div>
+    <div>
+      <h1>Hirec Automation</h1>
+      <span>Microservice v1.0.0 · Playwright + Express</span>
+    </div>
+  </div>
+  <div id="status-badge">
+    <div class="dot" id="status-dot"></div>
+    <span id="status-text">Checking...</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- LEFT: REQUEST BUILDER -->
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <div class="icon">📋</div>
+        <div>
+          <h2>Request Builder</h2>
+          <p>Cấu hình payload và gửi đến API</p>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <div class="endpoint-row">
+          <div class="pill active" onclick="selectEndpoint(this, 'fill-form')">
+            <span class="method-post">POST</span> /fill-form
+          </div>
+          <div class="pill" onclick="selectEndpoint(this, 'health')">
+            <span class="method-get">GET</span> /health
+          </div>
+        </div>
+
+        <div id="fill-form-fields">
+          <div class="form-group">
+            <label>Form URL</label>
+            <input type="url" id="form-url" placeholder="https://hirec.vn/feedback/abc123" />
+          </div>
+
+          <div class="form-group">
+            <label>Auth Cookies (JSON array, tuỳ chọn)</label>
+            <textarea id="cookies-input" style="min-height:80px;" placeholder='[{"name":".AspNetCore.Cookies","value":"your-value","domain":"hirec.vn"}]'></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Payload (JSON)</label>
+            <textarea id="payload-input" class="payload-textarea" spellcheck="false"></textarea>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <div class="toggle-label">Submit Form</div>
+              <div class="toggle-desc">Tắt = Save Draft · Bật = Submit hẳn</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="submit-toggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="send-btn" onclick="sendRequest()">
+            <span>▶</span> Gửi Request
+          </button>
+          <button class="btn btn-ghost" onclick="loadSample()">Load Sample</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: API INFO -->
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <div class="icon">📡</div>
+        <div>
+          <h2>API Reference</h2>
+          <p>Endpoints và field mapping</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Base URL</div>
+          <code style="background:var(--surface2);padding:8px 14px;border-radius:8px;font-size:13px;color:var(--accent);display:block;font-family:'JetBrains Mono',monospace;">http://localhost:3000</code>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Endpoints</div>
+          <table style="width:100%;border-collapse:collapse;font-size:13px;">
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:10px 0;color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:600;">GET</td>
+              <td style="padding:10px 12px;font-family:'JetBrains Mono',monospace;">/health</td>
+              <td style="padding:10px 0;color:var(--muted);">Kiểm tra service</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 0;color:var(--yellow);font-family:'JetBrains Mono',monospace;font-weight:600;">POST</td>
+              <td style="padding:10px 12px;font-family:'JetBrains Mono',monospace;">/fill-form</td>
+              <td style="padding:10px 0;color:var(--muted);">Auto-fill Hirec form</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Loại Fields</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="background:var(--surface2);border-radius:8px;padding:12px;">
+              <div style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:6px;">🔘 Radio + Reason</div>
+              <div style="font-size:12px;color:var(--muted);">Japanese, English, BA Skills, Soft Skills...</div>
+              <code style="font-size:11px;font-family:'JetBrains Mono',monospace;color:#86efac;">{ "value": "N2", "reason": "..." }</code>
+            </div>
+            <div style="background:var(--surface2);border-radius:8px;padding:12px;">
+              <div style="font-size:12px;font-weight:600;color:var(--green);margin-bottom:6px;">📝 Text Input</div>
+              <div style="font-size:12px;color:var(--muted);">Plus point, Job rank Assessed_BA</div>
+              <code style="font-size:11px;font-family:'JetBrains Mono',monospace;color:#86efac;">"Hanoi"</code>
+            </div>
+            <div style="background:var(--surface2);border-radius:8px;padding:12px;">
+              <div style="font-size:12px;font-weight:600;color:var(--yellow);margin-bottom:6px;">📄 Textarea</div>
+              <div style="font-size:12px;color:var(--muted);">Conclusion, Note</div>
+              <code style="font-size:11px;font-family:'JetBrains Mono',monospace;color:#86efac;">"Candidate is suitable..."</code>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Response Schema</div>
+          <pre style="background:var(--surface2);padding:14px;border-radius:8px;font-size:12px;font-family:'JetBrains Mono',monospace;line-height:1.7;"><span class="token-key">"success"</span>: <span class="token-bool">true</span>,
+<span class="token-key">"filled"</span>:  <span class="token-num">62</span>,
+<span class="token-key">"skipped"</span>: <span class="token-num">0</span>,
+<span class="token-key">"errors"</span>:  <span class="token-str">[]</span>,
+<span class="token-key">"action"</span>:  <span class="token-str">"saved_draft"</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM: RESPONSE -->
+  <div class="card response-panel">
+    <div class="card-header">
+      <div class="icon">💬</div>
+      <div>
+        <h2>Response</h2>
+        <p>Kết quả trả về từ API</p>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px;" id="response-meta" hidden>
+        <span id="http-status" style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;"></span>
+        <span id="resp-time" style="font-size:12px;color:var(--muted);"></span>
+      </div>
+    </div>
+
+    <div id="response-banner" hidden></div>
+
+    <div id="response-empty" class="response-empty">
+      <div class="empty-icon">📭</div>
+      <p>Chưa có response. Gửi request để xem kết quả.</p>
+    </div>
+
+    <pre id="response-output" hidden></pre>
+
+    <div id="stats-bar" class="stats-bar" hidden>
+      <div class="stat">
+        <div class="stat-dot" style="background:var(--green);"></div>
+        <span>Filled: </span><span class="stat-val" id="stat-filled">—</span>
+      </div>
+      <div class="stat">
+        <div class="stat-dot" style="background:var(--yellow);"></div>
+        <span>Skipped: </span><span class="stat-val" id="stat-skipped">—</span>
+      </div>
+      <div class="stat">
+        <div class="stat-dot" style="background:var(--red);"></div>
+        <span>Errors: </span><span class="stat-val" id="stat-errors">—</span>
+      </div>
+      <div class="stat" style="margin-left:auto;">
+        <span style="font-size:12px;color:var(--muted);">Action: </span>
+        <span id="stat-action" style="font-weight:600;font-size:13px;margin-left:4px;"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const SAMPLE_PAYLOAD = {
+    "Japanese_Listening": { "value": "N2", "reason": "Candidate can follow business conversation in Japanese clearly." },
+    "Japanese_Speaking": { "value": "N2", "reason": "Speaks fluently with minor grammatical errors." },
+    "Japanese_Writing": { "value": "N2-", "reason": "Can write business emails, some grammar issues." },
+    "Japanese_Reading": { "value": "N2", "reason": "Reads technical documentation well." },
+    "English": { "value": "2-Intermediate (Toeic>450)", "reason": "Can communicate in basic English." },
+    "Academic background": { "value": "Tier 3: Waseda, Kyushu, Keio, Tsukuba, Chiba, Bách Khoa", "reason": "Graduated from Bach Khoa University." },
+    "Educational level": { "value": "Master", "reason": "Master degree in Computer Science." },
+    "IT Experience": { "value": "3 to <6 years", "reason": "4 years of IT experience in Japan." },
+    "Working experience in JP": { "value": "1 to <3 years", "reason": "2 years working in Tokyo." },
+    "BA_Business a Skills": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Has solid BA experience." },
+    "BA_Domain Knowledge": { "value": "2_Limited Experience (出来る)", "reason": "Basic domain knowledge." },
+    "BA_General Technology Understanding": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Good understanding of IT systems." },
+    "BA_Technology Solution for Domain": { "value": "2_Limited Experience (出来る)", "reason": "Has applied some tech solutions." },
+    "BA_Tools (Office, Communication, Requirement Tools)": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Proficient with Confluence, JIRA, Excel." },
+    "BA_Facilitation and Negotiation Skills": { "value": "2_Limited Experience (出来る)", "reason": "Can facilitate small meetings." },
+    "BA_Research and Analytical Skills": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Strong analytical mindset." },
+    "BA_Organizational Skills": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Well organized and structured." },
+    "BA_Stress Management Skills": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Handles pressure well." },
+    "BA_Active mindset": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Proactive and self-driven." },
+    "Management skill_General Management (Stakeholder/Contract/Issue/Risk/Resource…)": { "value": "2_Limited Experience (出来る)", "reason": "Some project management exposure." },
+    "Management skill_Scope Management": { "value": "1_Fundamental (知っている)", "reason": "Knows scope management basics." },
+    "Management skill_Task Management": { "value": "2_Limited Experience (出来る)", "reason": "Manages own tasks well." },
+    "Management skill_Quality Management": { "value": "1_Fundamental (知っている)", "reason": "Familiar with QA concepts." },
+    "Soft Skill_Presentation/Communication Skills": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Presents clearly to stakeholders." },
+    "Soft Skill_Time Management/Problem solving": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Handles multiple tasks effectively." },
+    "Soft Skill_Teamwork": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Works well in a team." },
+    "Soft Skill_Business manner": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Professional manner in JP business context." },
+    "Soft Skill_Learning Ability/Adaptable Ability": { "value": "4_Advanced  (教えられる)", "reason": "Learns quickly and adapts to new environment." },
+    "Soft Skill_Ability to handle pressure at work": { "value": "3_Intermeadiate  (使いこなせる)", "reason": "Calm under deadline pressure." },
+    "Plus point_Working location": "Hanoi",
+    "Plus point_Experience of working in FSOFT (year)": "0",
+    "Plus point_Valuable skill": "Japanese N2, 4 years BA experience in Japan",
+    "Job rank Assessed_BA": "SE2",
+    "Conclusion": "Candidate is suitable for BA position. Recommend hiring at SE2 level.",
+    "Note": "Strong Japanese and BA skills. Proactive attitude. Good cultural fit."
+  };
+
+  let currentEndpoint = 'fill-form';
+
+  function selectEndpoint(el, endpoint) {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    currentEndpoint = endpoint;
+    document.getElementById('fill-form-fields').style.display = endpoint === 'fill-form' ? 'block' : 'none';
+  }
+
+  function loadSample() {
+    document.getElementById('form-url').value = 'https://hirec.vn/feedback/demo-abc123';
+    document.getElementById('payload-input').value = JSON.stringify(SAMPLE_PAYLOAD, null, 2);
+  }
+
+  function syntaxHighlight(json) {
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) => {
+      let cls = 'token-num';
+      if (/^"/.test(match)) {
+        cls = /:$/.test(match) ? 'token-key' : 'token-str';
+      } else if (/true|false/.test(match)) {
+        cls = 'token-bool';
+      } else if (/null/.test(match)) {
+        cls = 'token-null';
+      }
+      return `<span class="${cls}">${match}</span>`;
+    });
+  }
+
+  function showResponse(data, status, duration, isError) {
+    const empty = document.getElementById('response-empty');
+    const out   = document.getElementById('response-output');
+    const banner = document.getElementById('response-banner');
+    const meta   = document.getElementById('response-meta');
+    const statsBar = document.getElementById('stats-bar');
+
+    empty.hidden = true;
+    out.hidden = false;
+    banner.hidden = false;
+    meta.hidden = false;
+
+    document.getElementById('http-status').textContent = status;
+    document.getElementById('http-status').style.color = isError ? 'var(--red)' : 'var(--green)';
+    document.getElementById('resp-time').textContent = `${duration}ms`;
+
+    banner.className = `banner ${isError ? 'error' : 'success'}`;
+    banner.innerHTML = isError
+      ? `❌ Request thất bại — ${data.error || 'Unknown error'}`
+      : `✅ Thành công — ${data.filled ?? '—'} fields được điền`;
+
+    out.innerHTML = syntaxHighlight(JSON.stringify(data, null, 2));
+
+    if (!isError && data.filled !== undefined) {
+      statsBar.hidden = false;
+      document.getElementById('stat-filled').textContent = data.filled ?? 0;
+      document.getElementById('stat-skipped').textContent = data.skipped ?? 0;
+      document.getElementById('stat-errors').textContent = (data.errors ?? []).length;
+      document.getElementById('stat-action').textContent = data.action ?? '—';
+    } else {
+      statsBar.hidden = true;
+    }
+  }
+
+  async function sendRequest() {
+    const btn = document.getElementById('send-btn');
+    const out = document.getElementById('response-output');
+    const banner = document.getElementById('response-banner');
+    const empty = document.getElementById('response-empty');
+
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner"></div> Đang gửi...';
+    empty.hidden = true;
+    out.hidden = true;
+    banner.hidden = false;
+    banner.className = 'banner loading';
+    banner.innerHTML = '⏳ Đang xử lý...';
+
+    const t0 = Date.now();
+
+    try {
+      if (currentEndpoint === 'health') {
+        const res = await fetch('http://localhost:3000/health');
+        const data = await res.json();
+        showResponse(data, res.status, Date.now() - t0, !res.ok);
+        return;
+      }
+
+      // Parse payload
+      let payload;
+      try {
+        payload = JSON.parse(document.getElementById('payload-input').value || '{}');
+      } catch (e) {
+        showResponse({ error: 'Payload JSON không hợp lệ: ' + e.message }, 400, 0, true);
+        return;
+      }
+
+      let cookies;
+      const rawCookies = document.getElementById('cookies-input').value.trim();
+      if (rawCookies) {
+        try { cookies = JSON.parse(rawCookies); } catch (e) {
+          showResponse({ error: 'Cookies JSON không hợp lệ: ' + e.message }, 400, 0, true);
+          return;
+        }
+      }
+
+      const body = {
+        url: document.getElementById('form-url').value,
+        payload,
+        submit: document.getElementById('submit-toggle').checked,
+      };
+      if (cookies) body.cookies = cookies;
+
+      const res = await fetch('http://localhost:3000/fill-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      showResponse(data, res.status, Date.now() - t0, !res.ok);
+
+    } catch (err) {
+      showResponse({ error: `Network error: ${err.message}. Kiểm tra server đang chạy trên port 3000.` }, 0, Date.now() - t0, true);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<span>▶</span> Gửi Request';
+    }
+  }
+
+  // ─── Health check on load ───
+  async function checkHealth() {
+    const dot  = document.getElementById('status-dot');
+    const text = document.getElementById('status-text');
+    try {
+      const res = await fetch('http://localhost:3000/health');
+      const data = await res.json();
+      if (data.status === 'ok') {
+        dot.className = 'dot online';
+        text.textContent = 'Service Online';
+      } else { throw new Error(); }
+    } catch {
+      dot.className = 'dot offline';
+      text.textContent = 'Service Offline';
+    }
+  }
+
+  checkHealth();
+  setInterval(checkHealth, 10000);
+  loadSample();
+</script>
+
+</body>
+</html>

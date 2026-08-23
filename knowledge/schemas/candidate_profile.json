@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Name"
+    },
+    "overview": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Overview"
+    },
+    "skill": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Skill"
+    },
+    "evaluation": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Evaluation"
+    },
+    "location": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Location"
+    },
+    "interviewer_name": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Interviewer Name"
+    },
+    "plan_onboard": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Plan Onboard"
+    },
+    "interview_date": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Interview Date"
+    },
+    "internal_external": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Internal/External"
+    },
+    "rec_pic": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: REC PIC"
+    },
+    "note": {
+      "type": "string",
+      "description": "Tr\u01b0\u1eddng th\u00f4ng tin: Note"
+    },
+    "JLPT Level": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "N1, N2, N3, N4, N5"
+    }
+  },
+  "required": [
+    "name",
+    "skill",
+    "evaluation",
+    "JLPT Level"
+  ]
+}

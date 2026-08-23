@@ -1,0 +1,550 @@
+{
+  "form_type": "BA",
+  "label": "Business Analyst",
+  "updated_at": "2026-08-19T23:40:40.062Z",
+  "elements": [
+    {
+      "tag": "DIV",
+      "id": "Japanese_Listening_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Listening_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Speaking_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Speaking_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Writing_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Writing_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Reading_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Reading_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "English__choose",
+      "childInputs": [
+        "0-No English",
+        "1-Elementary (Toeic>300)",
+        "2-Intermediate (Toeic>450)",
+        "3-Advanced (Toeic>730)",
+        "4-Professional (Toeic>875)",
+        "5_Native"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "English__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Academic background__choose",
+      "childInputs": [
+        "Tier 1: Todai, Tokodai, Kyodai",
+        "Tier 2: Tohoku, Meikodai, Osaka, HEDSPI",
+        "Tier 3: Waseda, Kyushu, Keio, Tsukuba, Chiba, Bách Khoa",
+        "Tier 4: Tự nhiên, FU, Bưu Chính",
+        "Tier 0: Other"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Academic background__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Educational level__choose",
+      "childInputs": [
+        "PhD",
+        "Master",
+        "Bachelor (JP)",
+        "Bachelor (VN)",
+        "Senmon & Other"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Educational level__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "IT Experience__choose",
+      "childInputs": [
+        "<1 year",
+        "1 to <3 years",
+        "3 to <6 years",
+        "6 to <9 years",
+        "9 to <12 years",
+        "12 to 15 years",
+        ">15 years"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "IT Experience__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Working experience in JP__choose",
+      "childInputs": [
+        "<1 year",
+        "1 to <3 years",
+        "3 to <6 years",
+        "6 to <9 years",
+        "9 to <12 years",
+        "12 to 15 years",
+        ">15 years"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Working experience in JP__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Business a Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Business a Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Domain Knowledge_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Domain Knowledge_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_General Technology Understanding_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_General Technology Understanding_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Technology Solution for Domain_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Technology Solution for Domain_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Tools (Office, Communication, Requirement Tools)_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Tools (Office, Communication, Requirement Tools)_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Facilitation and Negotiation Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Facilitation and Negotiation Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Research and Analytical Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Research and Analytical Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Organizational Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Organizational Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Stress Management Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Stress Management Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "BA_Active mindset_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "BA_Active mindset_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_General Management (Stakeholder/Contract/Issue/Risk/Resource…)_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_General Management (Stakeholder/Contract/Issue/Risk/Resource…)_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Scope Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Scope Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Task Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Task Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Quality Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Quality Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Presentation/Communication Skills_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Presentation/Communication Skills_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Time Management/Problem solving_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Time Management/Problem solving_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Teamwork_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Teamwork_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Business manner_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Business manner_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Learning Ability/Adaptable Ability_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Learning Ability/Adaptable Ability_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Soft Skill_Ability to handle pressure at work_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Soft Skill_Ability to handle pressure at work_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Conclusion_",
+      "childInputs": []
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Note_",
+      "childInputs": []
+    }
+  ]
+}
