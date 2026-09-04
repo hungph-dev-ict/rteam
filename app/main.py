@@ -1066,7 +1066,7 @@ def hirec_fill_form(payload: HirecFillRequest):
             input=_json.dumps(config),
             capture_output=True,
             text=True,
-            timeout=120,
+            timeout=180,
             cwd=files_dir,
             env=run_env,
         )
@@ -1117,7 +1117,7 @@ def hirec_fill_form(payload: HirecFillRequest):
         return res_data
 
     except subprocess.TimeoutExpired:
-        raise HTTPException(status_code=408, detail="Automation timed out after 120 seconds.")
+        raise HTTPException(status_code=408, detail="Automation timed out after 180 seconds.")
     except FileNotFoundError:
         raise HTTPException(status_code=500, detail="'node' command not found. Please install Node.js.")
     except Exception as e:

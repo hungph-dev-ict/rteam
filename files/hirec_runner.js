@@ -43,16 +43,16 @@ function loadFormSchema(form_type) {
   }
 
   const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
-  const textInputIds          = new Set();
+  const textInputIds = new Set();
   const standaloneTextareaIds = new Set();
-  const radioGroupIds         = new Set();
+  const radioGroupIds = new Set();
 
   for (const el of (schema.elements || [])) {
     const tag = (el.tag || '').toUpperCase();
-    const id  = el.id || '';
-    if (tag === 'INPUT')    textInputIds.add(id);
+    const id = el.id || '';
+    if (tag === 'INPUT') textInputIds.add(id);
     else if (tag === 'TEXTAREA') standaloneTextareaIds.add(id);
-    else if (tag === 'DIV')      radioGroupIds.add(id);
+    else if (tag === 'DIV') radioGroupIds.add(id);
   }
 
   process.stderr.write(
@@ -64,9 +64,9 @@ function loadFormSchema(form_type) {
 
 // Mapping form_type → Feedback Form option title on Hirec
 const FEEDBACK_FORM_MAP = {
-  'BA':  'FJP_InterviewChecklist_v1.1_BA',
-  'PM':  'FJP_InterviewChecklist_v1.1_Front_PM',
-  'SE':  'FJP_InterviewChecklist_v1.1_Front_SE',
+  'BA': 'FJP_InterviewChecklist_v1.1_BA',
+  'PM': 'FJP_InterviewChecklist_v1.1_Front_PM',
+  'SE': 'FJP_InterviewChecklist_v1.1_Front_SE',
 };
 
 async function run(config) {
@@ -138,26 +138,43 @@ async function run(config) {
     if (formLabel) {
       process.stderr.write(`[hirec_runner] Selecting Feedback Form: "${formLabel}"...\n`);
       try {
-        // Wait until the Ant Design Select component is visible and clickable
-        const selectTrigger = page.locator('.ant-select-selector').first();
-        await selectTrigger.waitFor({ state: 'visible', timeout: 10000 });
-        await selectTrigger.click();
+        // Check current selected form via DOM
+        const currentSelected = await page.evaluate(() => {
+          const item = document.querySelector('.ant-select-selection-item');
+          return item ? item.getAttribute('title') : null;
+        });
+        process.stderr.write(`[hirec_runner] Current selected form: "${currentSelected}"\n`);
 
-        // Wait for dropdown to open and the target option to appear
-        const option = page.locator(`.ant-select-item-option[title="${formLabel}"]`);
-        await option.waitFor({ state: 'visible', timeout: 8000 });
-        await option.click();
+        if (currentSelected === formLabel) {
+          process.stderr.write(`[hirec_runner] ✅ Form already selected, skipping.\n`);
+        } else {
+          // Click to open the Ant Design searchable Select dropdown
+          const selectTrigger = page.locator('.ant-select-selector').first();
+          await selectTrigger.waitFor({ state: 'visible', timeout: 10000 });
+          await selectTrigger.click();
+          await page.waitForTimeout(500);
 
-        process.stderr.write(`[hirec_runner] ✅ Selected "${formLabel}", waiting 1.2s for form re-render...\n`);
-        // Delay to allow Hirec to re-render the form fields after selection
-        await page.waitForTimeout(1200);
+          // Dropdown uses virtual scroll — must type to filter so target option is rendered.
+          // Use keyboard.type() (not fill) to fire proper React synthetic events.
+          await page.keyboard.type('FJP', { delay: 80 });
+          await page.waitForTimeout(700);
+
+          // Click the target option once it's visible in the filtered list
+          const option = page.locator(`.ant-select-item-option[title="${formLabel}"]`);
+          await option.waitFor({ state: 'visible', timeout: 8000 });
+          await option.click();
+
+          process.stderr.write(`[hirec_runner] ✅ Selected "${formLabel}", waiting for form re-render...\n`);
+          await page.waitForTimeout(1500);
+        }
       } catch (selErr) {
         process.stderr.write(`[hirec_runner] ⚠️ Could not select Feedback Form "${formLabel}": ${selErr.message.split('\n')[0]}\n`);
       }
     } else {
-      process.stderr.write('[hirec_runner] No form_type provided, skipping Feedback Form selection.\n');
+      process.stderr.write('[hirec_runner] No form_type provided or unrecognized type, skipping Feedback Form selection.\n');
     }
     // ─────────────────────────────────────────────────────────────────────────
+
 
     let filled = 0;
     const errors = [];
@@ -177,7 +194,7 @@ async function run(config) {
         // Standalone textareas — derived from schema (tag === 'TEXTAREA')
         // Schema stores IDs with trailing underscore for Conclusion_ and Note_.
         // The payload key may or may not include the underscore, so we check both.
-        const textareaIdExact    = key;          // e.g. "Conclusion_"
+        const textareaIdExact = key;          // e.g. "Conclusion_"
         const textareaIdTrailing = `${key}_`;    // e.g. "Conclusion" → "Conclusion_"
         if (standaloneTextareaIds.has(textareaIdExact) || standaloneTextareaIds.has(textareaIdTrailing)) {
           const resolvedId = standaloneTextareaIds.has(textareaIdExact) ? textareaIdExact : textareaIdTrailing;
@@ -201,19 +218,19 @@ async function run(config) {
           // "<key>_choose" or "<key>__choose"; if the schema is empty we fall
           // back to the same heuristic as before.
           const cleanKeyName = key.replace(/_$/, '');
-          const groupIdUnder  = `${cleanKeyName}_choose`;
+          const groupIdUnder = `${cleanKeyName}_choose`;
           const groupIdDouble = `${cleanKeyName}__choose`;
-          const groupId = radioGroupIds.has(groupIdUnder)  ? groupIdUnder
-                        : radioGroupIds.has(groupIdDouble) ? groupIdDouble
-                        : cleanKeyName.includes('_')       ? groupIdUnder   // heuristic fallback
-                        :                                    groupIdDouble;
+          const groupId = radioGroupIds.has(groupIdUnder) ? groupIdUnder
+            : radioGroupIds.has(groupIdDouble) ? groupIdDouble
+              : cleanKeyName.includes('_') ? groupIdUnder   // heuristic fallback
+                : groupIdDouble;
 
-          const reasonIdUnder  = `${cleanKeyName}_Reason`;
+          const reasonIdUnder = `${cleanKeyName}_Reason`;
           const reasonIdDouble = `${cleanKeyName}__Reason`;
-          const reasonId = standaloneTextareaIds.has(reasonIdUnder)  ? reasonIdUnder
-                         : standaloneTextareaIds.has(reasonIdDouble) ? reasonIdDouble
-                         : cleanKeyName.includes('_')                ? reasonIdUnder  // heuristic fallback
-                         :                                             reasonIdDouble;
+          const reasonId = standaloneTextareaIds.has(reasonIdUnder) ? reasonIdUnder
+            : standaloneTextareaIds.has(reasonIdDouble) ? reasonIdDouble
+              : cleanKeyName.includes('_') ? reasonIdUnder  // heuristic fallback
+                : reasonIdDouble;
 
           if (radioValue != null) {
             const radio = page.locator(`[id="${esc(groupId)}"] input[value="${esc(String(radioValue))}"]`);
