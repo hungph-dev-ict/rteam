@@ -206,6 +206,24 @@ async function run(config) {
           continue;
         }
 
+        // Fallback for string input/textarea if schema is empty or doesn't list the field ID
+        if (typeof value === 'string') {
+          const candidateIds = [key, `${key}_`, `${key}__`].map(esc);
+          let handled = false;
+          for (const candId of candidateIds) {
+            const loc = page.locator(`textarea[id="${candId}"], input[id="${candId}"]`).first();
+            if (await loc.count() > 0) {
+              await loc.scrollIntoViewIfNeeded();
+              await loc.fill(String(value));
+              process.stderr.write(`  ✅ [string fallback] "${key}" → id="${candId}"\n`);
+              filled++;
+              handled = true;
+              break;
+            }
+          }
+          if (handled) continue;
+        }
+
         // Radio + Reason pair (DIV tag in schema, or object value as fallback)
         if (typeof value === 'object' && value !== null) {
           const { value: radioValue, reason } = value;

@@ -1032,8 +1032,11 @@ def hirec_fill_form(payload: HirecFillRequest):
     import subprocess
     import json as _json
 
+    form_type = (payload.form_type or "BA").upper()
+
     config = {
         "url": payload.url,
+        "form_type": form_type,
         "payload": payload.payload or {},
         "cookies": {
             "antiforgery": payload.cookie_antiforgery,
@@ -1049,7 +1052,6 @@ def hirec_fill_form(payload: HirecFillRequest):
         raise HTTPException(status_code=500, detail=f"hirec_runner.js not found at: {runner_path}")
 
     # Audit Log payload requirement
-    form_type = (payload.form_type or "BA").upper()
     db.log_audit(
         "automation",
         "HirecFillRequest",
