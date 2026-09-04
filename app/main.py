@@ -764,7 +764,10 @@ def parse_form_url(payload: ParseFormUrlRequest):
     if not os.path.exists(parser_script):
         raise HTTPException(status_code=500, detail=f"parse_form_url.js not found at: {parser_script}")
 
-    run_env = {**os.environ, "PLAYWRIGHT_BROWSERS_PATH": "0"}
+    run_env = {**os.environ}
+    local_browser_dir = os.path.join(files_dir, "node_modules", "playwright-core", ".local-browsers")
+    if os.environ.get("RENDER") or os.path.exists(local_browser_dir):
+        run_env["PLAYWRIGHT_BROWSERS_PATH"] = "0"
     try:
         result = subprocess.run(
             ["node", parser_script],
@@ -1053,7 +1056,10 @@ def hirec_fill_form(payload: HirecFillRequest):
         f"Form: {form_type}, URL: {payload.url}, Payload JSON: {_json.dumps(payload.payload or {})}"
     )
 
-    run_env = {**os.environ, "PLAYWRIGHT_BROWSERS_PATH": "0"}
+    run_env = {**os.environ}
+    local_browser_dir = os.path.join(files_dir, "node_modules", "playwright-core", ".local-browsers")
+    if os.environ.get("RENDER") or os.path.exists(local_browser_dir):
+        run_env["PLAYWRIGHT_BROWSERS_PATH"] = "0"
     try:
         result = subprocess.run(
             ["node", runner_path],
