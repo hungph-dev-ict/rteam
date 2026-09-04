@@ -5,6 +5,7 @@
  * Input JSON:
  * {
  *   "url": "https://app.hirec.vn/feedback/...",
+ *   "form_type": "BA" | "PM" | "SE",   // optional, used to select Feedback Form dropdown
  *   "payload": { ... structured form data from LLM ... },
  *   "cookies": { "antiforgery": "...", "idsrv": "...", "idsrv_session": "..." }
  * }
@@ -18,19 +19,61 @@ function esc(id) {
   return id.replace(/["\\\n\r]/g, '\\$&');
 }
 
-// Text input keys (no radio, no reason)
-const TEXT_INPUT_KEYS = [
-  'Plus point_Working location',
-  'Plus point_Experience of working in FSOFT (year)',
-  'Plus point_Valuable skill',
-  'Job rank Assessed_BA',
-];
+/**
+ * Load form structure JSON for the given form_type (BA/PM/SE).
+ * Returns Sets of element IDs grouped by their tag type:
+ *   - textInputIds:          IDs of <input> elements (tag === 'INPUT')
+ *   - standaloneTextareaIds: IDs of standalone <textarea> elements (tag === 'TEXTAREA')
+ *   - radioGroupIds:         IDs of radio group containers (tag === 'DIV')
+ *
+ * Falls back to empty Sets if the schema file is not found or form_type is missing,
+ * so the runner can still attempt to fill using the legacy heuristic path.
+ */
+function loadFormSchema(form_type) {
+  const empty = { textInputIds: new Set(), standaloneTextareaIds: new Set(), radioGroupIds: new Set() };
+  if (!form_type) return empty;
 
-// Standalone textarea keys
-const TEXTAREA_ONLY_KEYS = ['Conclusion', 'Note'];
+  const ft = String(form_type).toLowerCase();
+  // Schema files live two levels up from files/ → project root/data/automation/
+  const schemaPath = require('path').join(__dirname, '..', 'data', 'automation', `form_structure_${ft}.json`);
+
+  if (!fs.existsSync(schemaPath)) {
+    process.stderr.write(`[hirec_runner] ⚠️ Schema not found: ${schemaPath}, falling back to heuristic mode.\n`);
+    return empty;
+  }
+
+  const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
+  const textInputIds          = new Set();
+  const standaloneTextareaIds = new Set();
+  const radioGroupIds         = new Set();
+
+  for (const el of (schema.elements || [])) {
+    const tag = (el.tag || '').toUpperCase();
+    const id  = el.id || '';
+    if (tag === 'INPUT')    textInputIds.add(id);
+    else if (tag === 'TEXTAREA') standaloneTextareaIds.add(id);
+    else if (tag === 'DIV')      radioGroupIds.add(id);
+  }
+
+  process.stderr.write(
+    `[hirec_runner] Loaded schema "${ft}": ${textInputIds.size} inputs, ` +
+    `${standaloneTextareaIds.size} textareas, ${radioGroupIds.size} radio groups.\n`
+  );
+  return { textInputIds, standaloneTextareaIds, radioGroupIds };
+}
+
+// Mapping form_type → Feedback Form option title on Hirec
+const FEEDBACK_FORM_MAP = {
+  'BA':  'FJP_InterviewChecklist_v1.1_BA',
+  'PM':  'FJP_InterviewChecklist_v1.1_Front_PM',
+  'SE':  'FJP_InterviewChecklist_v1.1_Front_SE',
+};
 
 async function run(config) {
-  const { url, payload = {}, cookies: cookieValues = {} } = config;
+  const { url, payload = {}, cookies: cookieValues = {}, form_type } = config;
+
+  // Build field-type lookup from form_structure JSON (dynamic, not hardcoded)
+  const { textInputIds, standaloneTextareaIds, radioGroupIds } = loadFormSchema(form_type);
 
   if (!url) throw new Error('Missing required field: url');
 
@@ -90,13 +133,39 @@ async function run(config) {
     const currentUrl = page.url();
     process.stderr.write(`[hirec_runner] URL: ${currentUrl}\n`);
 
+    // ── Select Feedback Form dropdown based on form_type ──────────────────────
+    const formLabel = form_type ? FEEDBACK_FORM_MAP[String(form_type).toUpperCase()] : null;
+    if (formLabel) {
+      process.stderr.write(`[hirec_runner] Selecting Feedback Form: "${formLabel}"...\n`);
+      try {
+        // Wait until the Ant Design Select component is visible and clickable
+        const selectTrigger = page.locator('.ant-select-selector').first();
+        await selectTrigger.waitFor({ state: 'visible', timeout: 10000 });
+        await selectTrigger.click();
+
+        // Wait for dropdown to open and the target option to appear
+        const option = page.locator(`.ant-select-item-option[title="${formLabel}"]`);
+        await option.waitFor({ state: 'visible', timeout: 8000 });
+        await option.click();
+
+        process.stderr.write(`[hirec_runner] ✅ Selected "${formLabel}", waiting 1.2s for form re-render...\n`);
+        // Delay to allow Hirec to re-render the form fields after selection
+        await page.waitForTimeout(1200);
+      } catch (selErr) {
+        process.stderr.write(`[hirec_runner] ⚠️ Could not select Feedback Form "${formLabel}": ${selErr.message.split('\n')[0]}\n`);
+      }
+    } else {
+      process.stderr.write('[hirec_runner] No form_type provided, skipping Feedback Form selection.\n');
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+
     let filled = 0;
     const errors = [];
 
     for (const [key, value] of Object.entries(payload)) {
       try {
-        // Plain text inputs
-        if (TEXT_INPUT_KEYS.includes(key)) {
+        // Plain text inputs — derived from schema (tag === 'INPUT')
+        if (textInputIds.has(key)) {
           const el = page.locator(`input[id="${esc(key)}"]`);
           await el.scrollIntoViewIfNeeded();
           await el.fill(String(value));
@@ -105,24 +174,46 @@ async function run(config) {
           continue;
         }
 
-        // Standalone textareas (Conclusion_, Note_)
-        if (TEXTAREA_ONLY_KEYS.includes(key)) {
-          const el = page.locator(`textarea[id="${esc(key)}_"]`);
+        // Standalone textareas — derived from schema (tag === 'TEXTAREA')
+        // Schema stores IDs with trailing underscore for Conclusion_ and Note_.
+        // The payload key may or may not include the underscore, so we check both.
+        const textareaIdExact    = key;          // e.g. "Conclusion_"
+        const textareaIdTrailing = `${key}_`;    // e.g. "Conclusion" → "Conclusion_"
+        if (standaloneTextareaIds.has(textareaIdExact) || standaloneTextareaIds.has(textareaIdTrailing)) {
+          const resolvedId = standaloneTextareaIds.has(textareaIdExact) ? textareaIdExact : textareaIdTrailing;
+          const el = page.locator(`textarea[id="${esc(resolvedId)}"]`);
           await el.scrollIntoViewIfNeeded();
           await el.fill(String(value));
-          process.stderr.write(`  ✅ [textarea] "${key}"\n`);
+          process.stderr.write(`  ✅ [textarea] "${key}" → id="${resolvedId}"\n`);
           filled++;
           continue;
         }
 
-        // Radio + Reason pair
+        // Radio + Reason pair (DIV tag in schema, or object value as fallback)
         if (typeof value === 'object' && value !== null) {
           const { value: radioValue, reason } = value;
 
-          // Build group container ID
+          // Derive group container ID and reason textarea ID from the schema.
+          // Schema stores IDs like "Japanese_Listening_choose" (DIV) and
+          // "Japanese_Listening_Reason" (TEXTAREA). The payload key passed from
+          // the LLM is the "base" key, e.g. "Japanese_Listening".
+          // We first try to find a matching DIV id in the schema by looking up
+          // "<key>_choose" or "<key>__choose"; if the schema is empty we fall
+          // back to the same heuristic as before.
           const cleanKeyName = key.replace(/_$/, '');
-          const groupId = cleanKeyName.includes('_') ? `${cleanKeyName}_choose` : `${cleanKeyName}__choose`;
-          const reasonId = cleanKeyName.includes('_') ? `${cleanKeyName}_Reason` : `${cleanKeyName}__Reason`;
+          const groupIdUnder  = `${cleanKeyName}_choose`;
+          const groupIdDouble = `${cleanKeyName}__choose`;
+          const groupId = radioGroupIds.has(groupIdUnder)  ? groupIdUnder
+                        : radioGroupIds.has(groupIdDouble) ? groupIdDouble
+                        : cleanKeyName.includes('_')       ? groupIdUnder   // heuristic fallback
+                        :                                    groupIdDouble;
+
+          const reasonIdUnder  = `${cleanKeyName}_Reason`;
+          const reasonIdDouble = `${cleanKeyName}__Reason`;
+          const reasonId = standaloneTextareaIds.has(reasonIdUnder)  ? reasonIdUnder
+                         : standaloneTextareaIds.has(reasonIdDouble) ? reasonIdDouble
+                         : cleanKeyName.includes('_')                ? reasonIdUnder  // heuristic fallback
+                         :                                             reasonIdDouble;
 
           if (radioValue != null) {
             const radio = page.locator(`[id="${esc(groupId)}"] input[value="${esc(String(radioValue))}"]`);

@@ -1,6 +1,562 @@
 {
   "form_type": "PM",
   "label": "Project Manager",
-  "updated_at": null,
-  "elements": []
+  "updated_at": "2026-09-04T01:45:00.000Z",
+  "elements": [
+    {
+      "tag": "DIV",
+      "id": "Japanese_Listening_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Listening_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Speaking_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Speaking_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Writing_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Writing_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Japanese_Reading_choose",
+      "childInputs": [
+        "N1",
+        "N1-",
+        "N2+",
+        "N2",
+        "N2-",
+        "N3+",
+        "N3",
+        "N3-",
+        "N4",
+        "N5",
+        "No"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Japanese_Reading_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "English__choose",
+      "childInputs": [
+        "0-No English",
+        "1-Elementary (Toeic>300)",
+        "2-Intermediate (Toeic>450)",
+        "3-Advanced (Toeic>730)",
+        "4-Professional (Toeic>875)",
+        "5_Native"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "English__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Academic background__choose",
+      "childInputs": [
+        "Tier 1: Todai, Tokodai, Kyodai",
+        "Tier 2: Tohoku, Meikodai, Osaka, HEDSPI",
+        "Tier 3: Waseda, Kyushu, Keio, Tsukuba, Chiba, Bách Khoa",
+        "Tier 4: Tự nhiên, FU, Bưu Chính",
+        "Tier 0: Other"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Academic background__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Educational level__choose",
+      "childInputs": [
+        "PhD",
+        "Master",
+        "Bachelor (JP)",
+        "Bachelor (VN)",
+        "Senmon & Other"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Educational level__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "IT Experience__choose",
+      "childInputs": [
+        "<1 year",
+        "1 to <3 years",
+        "3 to <6 years",
+        "6 to <9 years",
+        "9 to <12 years",
+        "12 to 15 years",
+        ">15 years"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "IT Experience__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Working experience in JP__choose",
+      "childInputs": [
+        "<1 year",
+        "1 to <3 years",
+        "3 to <6 years",
+        "6 to <9 years",
+        "9 to <12 years",
+        "12 to 15 years",
+        ">15 years"
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Working experience in JP__Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "SE/Front SE_Software Detail Design_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "SE/Front SE_Software Detail Design_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "SE/Front SE_Software Basic Design_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "SE/Front SE_Software Basic Design_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "SE/Front SE_Software Programming_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "SE/Front SE_Software Programming_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "SE/Front SE_Software Requirement Analysis_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "SE/Front SE_Software Requirement Analysis_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "SE/Front SE_Software Development process_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "SE/Front SE_Software Development process_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "SE/Front SE_Software Test (UT/IT/ST)_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "SE/Front SE_Software Test (UT/IT/ST)_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "SE/Front SE_Pre-sale Activities_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "SE/Front SE_Pre-sale Activities_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Front PM_Develop Project Plan, Estimation_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Front PM_Develop Project Plan, Estimation_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Front PM_Cost Control and Budget Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Front PM_Cost Control and Budget Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Front PM_Staffing Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Front PM_Staffing Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Front PM_Risk Management & Problem solving_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Front PM_Risk Management & Problem solving_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Front PM_Project Analysis Activities_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Front PM_Project Analysis Activities_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Front PM_Project Management Reporting_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Front PM_Project Management Reporting_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Front PM_Project Management Methodologies and Frameworks_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Front PM_Project Management Methodologies and Frameworks_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Front PM_Leadership & Coaching_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Front PM_Leadership & Coaching_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_General Management (Stakeholder/Contract/Issue/Risk/Resource…)_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_General Management (Stakeholder/Contract/Issue/Risk/Resource…)_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Scope Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Scope Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Task Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Task Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "DIV",
+      "id": "Management skill_Quality Management_choose",
+      "childInputs": [
+        "0_No knowledge",
+        "1_Fundamental (知っている)",
+        "2_Limited Experience (出来る)",
+        "3_Intermeadiate  (使いこなせる)",
+        "4_Advanced  (教えられる)",
+        "5_Expert ",
+        "6_Master "
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "id": "Management skill_Quality Management_Reason",
+      "childInputs": []
+    },
+    {
+      "tag": "INPUT",
+      "id": "Plus point_Working location",
+      "childInputs": []
+    },
+    {
+      "tag": "INPUT",
+      "id": "Plus point_Experience of working in FSOFT (year)",
+      "childInputs": []
+    },
+    {
+      "tag": "INPUT",
+      "id": "Plus point_Valuable skill",
+      "childInputs": []
+    },
+    {
+      "tag": "INPUT",
+      "id": "Plus point_Basic Design Skill",
+      "childInputs": []
+    },
+    {
+      "tag": "INPUT",
+      "id": "Plus point_Detail Design Skill",
+      "childInputs": []
+    },
+    {
+      "tag": "INPUT",
+      "id": "Job rank Assessed_Front PM",
+      "childInputs": []
+    },
+    {
+      "tag": "INPUT",
+      "id": "Conclusion_",
+      "childInputs": []
+    },
+    {
+      "tag": "INPUT",
+      "id": "Note_",
+      "childInputs": []
+    }
+  ]
 }
