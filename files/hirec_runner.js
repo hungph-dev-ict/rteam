@@ -14,6 +14,14 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 
+/**
+ * Emit a structured progress event on stderr for real-time streaming.
+ * Backend parses lines starting with [PROGRESS] as JSON events.
+ */
+function progress(data) {
+  process.stderr.write(`[PROGRESS]${JSON.stringify(data)}\n`);
+}
+
 // Safe CSS escaping for attribute selectors
 function esc(id) {
   return id.replace(/["\\\n\r]/g, '\\$&');
@@ -95,6 +103,18 @@ async function run(config) {
     },
   ];
 
+  // Calculate total expected fields for progress tracking
+  const totalFields = Object.entries(payload).reduce((sum, [, v]) => {
+    if (typeof v === 'object' && v !== null) {
+      let c = 0;
+      if (v.value != null) c++;
+      if (v.reason) c++;
+      return sum + c;
+    }
+    return sum + 1;
+  }, 0);
+
+  progress({ type: 'phase', phase: 'launching', message: 'Launching Chromium (headless)...', totalFields });
   process.stderr.write('[hirec_runner] Launching Chromium (headless)...\n');
   const browser = await chromium.launch({
     headless: true,
@@ -120,6 +140,7 @@ async function run(config) {
     // Block non-essential heavy resources to speed up page loading by 5x
     await page.route('**/*.{png,jpg,jpeg,gif,svg,woff,woff2,ttf,otf,mp4,webm}', route => route.abort());
 
+    progress({ type: 'phase', phase: 'navigating', message: 'Navigating to form...' });
     process.stderr.write('[hirec_runner] Navigating to form...\n');
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 25000 });
 
@@ -136,6 +157,7 @@ async function run(config) {
     // ── Select Feedback Form dropdown based on form_type ──────────────────────
     const formLabel = form_type ? FEEDBACK_FORM_MAP[String(form_type).toUpperCase()] : null;
     if (formLabel) {
+      progress({ type: 'phase', phase: 'selecting_form', message: `Selecting Feedback Form: "${formLabel}"...` });
       process.stderr.write(`[hirec_runner] Selecting Feedback Form: "${formLabel}"...\n`);
       try {
         // Check current selected form via DOM
@@ -176,6 +198,7 @@ async function run(config) {
     // ─────────────────────────────────────────────────────────────────────────
 
 
+    progress({ type: 'phase', phase: 'filling', message: `Filling ${totalFields} fields...` });
     let filled = 0;
     const errors = [];
 
@@ -186,8 +209,9 @@ async function run(config) {
           const el = page.locator(`input[id="${esc(key)}"]`);
           await el.scrollIntoViewIfNeeded();
           await el.fill(String(value));
-          process.stderr.write(`  ✅ [text] "${key}"\n`);
           filled++;
+          progress({ type: 'field', field: key, kind: 'text', status: 'ok', filled, total: totalFields });
+          process.stderr.write(`  ✅ [text] "${key}"\n`);
           continue;
         }
 
@@ -201,8 +225,9 @@ async function run(config) {
           const el = page.locator(`textarea[id="${esc(resolvedId)}"]`);
           await el.scrollIntoViewIfNeeded();
           await el.fill(String(value));
-          process.stderr.write(`  ✅ [textarea] "${key}" → id="${resolvedId}"\n`);
           filled++;
+          progress({ type: 'field', field: key, kind: 'textarea', status: 'ok', filled, total: totalFields });
+          process.stderr.write(`  ✅ [textarea] "${key}" → id="${resolvedId}"\n`);
           continue;
         }
 
@@ -215,8 +240,9 @@ async function run(config) {
             if (await loc.count() > 0) {
               await loc.scrollIntoViewIfNeeded();
               await loc.fill(String(value));
-              process.stderr.write(`  ✅ [string fallback] "${key}" → id="${candId}"\n`);
               filled++;
+              progress({ type: 'field', field: key, kind: 'string_fallback', status: 'ok', filled, total: totalFields });
+              process.stderr.write(`  ✅ [string fallback] "${key}" → id="${candId}"\n`);
               handled = true;
               break;
             }
@@ -254,31 +280,37 @@ async function run(config) {
             const radio = page.locator(`[id="${esc(groupId)}"] input[value="${esc(String(radioValue))}"]`);
             await radio.scrollIntoViewIfNeeded();
             await radio.click();
-            process.stderr.write(`  ✅ [radio] "${key}" → "${radioValue}"\n`);
             filled++;
+            progress({ type: 'field', field: key, kind: 'radio', status: 'ok', filled, total: totalFields, value: radioValue });
+            process.stderr.write(`  ✅ [radio] "${key}" → "${radioValue}"\n`);
           }
 
           if (reason) {
             const textarea = page.locator(`textarea[id="${esc(reasonId)}"]`);
             await textarea.scrollIntoViewIfNeeded();
             await textarea.fill(String(reason));
-            process.stderr.write(`  ✅ [reason] "${key}"\n`);
             filled++;
+            progress({ type: 'field', field: key, kind: 'reason', status: 'ok', filled, total: totalFields });
+            process.stderr.write(`  ✅ [reason] "${key}"\n`);
           }
         }
       } catch (err) {
-        process.stderr.write(`  ❌ [error] "${key}": ${err.message.split('\n')[0]}\n`);
-        errors.push({ field: key, error: err.message.split('\n')[0] });
+        const errMsg = err.message.split('\n')[0];
+        progress({ type: 'field', field: key, kind: 'unknown', status: 'error', filled, total: totalFields, error: errMsg });
+        process.stderr.write(`  ❌ [error] "${key}": ${errMsg}\n`);
+        errors.push({ field: key, error: errMsg });
       }
     }
 
     // Try Save Draft
+    progress({ type: 'phase', phase: 'saving', message: 'Saving draft...' });
     try {
       const saveDraft = page.locator('button:has-text("Save draft"), button:has-text("Lưu nháp")').first();
       if (await saveDraft.count() > 0) {
         await saveDraft.scrollIntoViewIfNeeded();
         await saveDraft.click();
         await page.waitForTimeout(2000);
+        progress({ type: 'phase', phase: 'saved', message: 'Draft saved!' });
         process.stderr.write('[hirec_runner] Clicked Save Draft\n');
       }
     } catch (e) {

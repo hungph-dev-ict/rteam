@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 from typing import Dict, Any, List, Optional
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -693,6 +694,7 @@ class HirecFillRequest(BaseModel):
     cookie_idsrv_session: str = ""
     form_type: Optional[str] = "BA"
     payload: Optional[Dict[str, Any]] = None  # structured form payload
+    history_id: Optional[str] = None  # ID of pre-saved history entry to update
 
 def _get_form_structure_path(form_type: str) -> str:
     ft = (form_type or "ba").lower()
@@ -808,6 +810,65 @@ def get_automation_history():
             except Exception:
                 return []
     return []
+
+def _load_history() -> list:
+    """Load history entries from JSON file."""
+    path = _get_history_path()
+    if os.path.exists(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return data if isinstance(data, list) else []
+        except Exception:
+            return []
+    return []
+
+def _save_history(entries: list):
+    """Save history entries to JSON file (keeps last 50)."""
+    path = _get_history_path()
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    entries = entries[:50]
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(entries, f, indent=2, ensure_ascii=False)
+
+class SaveJsonRequest(BaseModel):
+    form_type: Optional[str] = "BA"
+    url: Optional[str] = ""
+    payload: Dict[str, Any]
+    comment: Optional[str] = ""
+
+@app.post("/api/automation/save-json")
+def save_json_to_history(body: SaveJsonRequest):
+    """
+    Saves a JSON payload to automation history BEFORE running automation.
+    Returns a history_id that can be passed to hirec-fill to update status.
+    This ensures the payload is preserved even if the automation run crashes.
+    """
+    history_id = str(uuid.uuid4())[:8]
+    form_type = (body.form_type or "BA").upper()
+
+    new_entry = {
+        "id": history_id,
+        "timestamp": datetime.now().isoformat(),
+        "form_type": form_type,
+        "url": body.url or "",
+        "payload": body.payload,
+        "status": "saved",
+        "success": None,
+        "message": "JSON đã lưu, chưa chạy automation",
+        "filled": 0,
+        "errors": [],
+        "logs": "",
+        "comment": body.comment or "",
+    }
+
+    history_entries = _load_history()
+    history_entries.insert(0, new_entry)
+    _save_history(history_entries)
+
+    db.log_audit("automation", "SaveJSON", f"Pre-saved JSON payload (id={history_id}) for Form {form_type}")
+
+    return {"success": True, "history_id": history_id}
 
 class ValidateJsonRequest(BaseModel):
     form_type: Optional[str] = "BA"
@@ -1027,12 +1088,15 @@ def hirec_fill_form(payload: HirecFillRequest):
     """
     Runs Hirec feedback form automation headlessly.
     Calls node files/hirec_runner.js with config piped via stdin.
-    Also logs JSON payload to audit logs and run_history.json.
+    If history_id is provided, updates the existing history entry.
+    Otherwise creates a new one. History is always written in the finally
+    block so payloads are preserved even on server crashes.
     """
     import subprocess
     import json as _json
 
     form_type = (payload.form_type or "BA").upper()
+    history_id = payload.history_id
 
     config = {
         "url": payload.url,
@@ -1049,6 +1113,12 @@ def hirec_fill_form(payload: HirecFillRequest):
     runner_path = os.path.join(files_dir, "hirec_runner.js")
 
     if not os.path.exists(runner_path):
+        # Still save history as error before raising
+        _update_or_create_history(
+            history_id, form_type, payload.url, payload.payload or {},
+            status="error", success=False,
+            message=f"hirec_runner.js not found at: {runner_path}"
+        )
         raise HTTPException(status_code=500, detail=f"hirec_runner.js not found at: {runner_path}")
 
     # Audit Log payload requirement
@@ -1062,6 +1132,8 @@ def hirec_fill_form(payload: HirecFillRequest):
     local_browser_dir = os.path.join(files_dir, "node_modules", "playwright-core", ".local-browsers")
     if os.environ.get("RENDER") or os.path.exists(local_browser_dir):
         run_env["PLAYWRIGHT_BROWSERS_PATH"] = "0"
+
+    res_data = {}
     try:
         result = subprocess.run(
             ["node", runner_path],
@@ -1076,7 +1148,6 @@ def hirec_fill_form(payload: HirecFillRequest):
         stdout = result.stdout.strip()
         stderr = result.stderr.strip()
 
-        res_data = {}
         if stdout:
             try:
                 res_data = _json.loads(stdout)
@@ -1087,43 +1158,213 @@ def hirec_fill_form(payload: HirecFillRequest):
         else:
             res_data = {"success": result.returncode == 0, "error": stderr if result.returncode != 0 else None, "logs": stderr}
 
-        # Save to history file
-        history_path = _get_history_path()
-        os.makedirs(os.path.dirname(history_path), exist_ok=True)
-        history_entries = []
-        if os.path.exists(history_path):
-            try:
-                with open(history_path, "r", encoding="utf-8") as hf:
-                    history_entries = _json.load(hf)
-            except Exception:
-                history_entries = []
-
-        new_history_item = {
-            "id": str(uuid.uuid4())[:8],
-            "timestamp": datetime.now().isoformat(),
-            "form_type": form_type,
-            "url": payload.url,
-            "payload": payload.payload or {},
-            "success": res_data.get("success", False),
-            "message": res_data.get("message") or res_data.get("error"),
-            "filled": res_data.get("filled", 0),
-            "errors": res_data.get("errors", []),
-            "logs": res_data.get("logs", ""),
-        }
-        history_entries.insert(0, new_history_item)
-        history_entries = history_entries[:50] # keep last 50
-
-        with open(history_path, "w", encoding="utf-8") as hf:
-            _json.dump(history_entries, hf, indent=2, ensure_ascii=False)
-
         return res_data
 
     except subprocess.TimeoutExpired:
+        res_data = {"success": False, "error": "Automation timed out after 180 seconds."}
         raise HTTPException(status_code=408, detail="Automation timed out after 180 seconds.")
     except FileNotFoundError:
+        res_data = {"success": False, "error": "'node' command not found. Please install Node.js."}
         raise HTTPException(status_code=500, detail="'node' command not found. Please install Node.js.")
+    except HTTPException:
+        raise
     except Exception as e:
+        res_data = {"success": False, "error": str(e)}
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        # Always update history — even on crash/timeout/exception
+        run_success = res_data.get("success", False)
+        run_status = "success" if run_success else ("failed" if res_data else "error")
+        _update_or_create_history(
+            history_id, form_type, payload.url, payload.payload or {},
+            status=run_status,
+            success=run_success,
+            message=res_data.get("message") or res_data.get("error"),
+            filled=res_data.get("filled", 0),
+            errors=res_data.get("errors", []),
+            logs=res_data.get("logs", ""),
+        )
+
+
+@app.post("/api/automation/hirec-fill-stream")
+def hirec_fill_stream(payload: HirecFillRequest):
+    """
+    SSE streaming version of hirec-fill.
+    Streams real-time progress events as the Node runner fills each field.
+    """
+    import subprocess
+    import json as _json
+
+    form_type = (payload.form_type or "BA").upper()
+    history_id = payload.history_id
+
+    config = {
+        "url": payload.url,
+        "form_type": form_type,
+        "payload": payload.payload or {},
+        "cookies": {
+            "antiforgery": payload.cookie_antiforgery,
+            "idsrv": payload.cookie_idsrv,
+            "idsrv_session": payload.cookie_idsrv_session,
+        }
+    }
+
+    files_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "files")
+    runner_path = os.path.join(files_dir, "hirec_runner.js")
+
+    if not os.path.exists(runner_path):
+        _update_or_create_history(
+            history_id, form_type, payload.url, payload.payload or {},
+            status="error", success=False,
+            message=f"hirec_runner.js not found at: {runner_path}"
+        )
+        raise HTTPException(status_code=500, detail=f"hirec_runner.js not found at: {runner_path}")
+
+    db.log_audit(
+        "automation",
+        "HirecFillRequest",
+        f"Form: {form_type}, URL: {payload.url}, Payload JSON: {_json.dumps(payload.payload or {})}"
+    )
+
+    run_env = {**os.environ}
+    local_browser_dir = os.path.join(files_dir, "node_modules", "playwright-core", ".local-browsers")
+    if os.environ.get("RENDER") or os.path.exists(local_browser_dir):
+        run_env["PLAYWRIGHT_BROWSERS_PATH"] = "0"
+
+    def event_generator():
+        res_data = {}
+        all_logs = []
+        try:
+            proc = subprocess.Popen(
+                ["node", runner_path],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                bufsize=1,
+                cwd=files_dir,
+                env=run_env,
+            )
+            # Send config via stdin and close it
+            proc.stdin.write(_json.dumps(config))
+            proc.stdin.close()
+
+            # Read stderr line by line for progress events immediately
+            for line in iter(proc.stderr.readline, ''):
+                line = line.rstrip('\r\n')
+                if not line:
+                    continue
+                all_logs.append(line)
+                if line.startswith('[PROGRESS]'):
+                    json_str = line[len('[PROGRESS]'):]
+                    yield f"data: {json_str}\n\n"
+                # Also yield human-readable log lines as log events
+                else:
+                    yield f"data: {_json.dumps({'type': 'log', 'message': line})}\n\n"
+
+            proc.wait(timeout=180)
+
+            stdout = proc.stdout.read().strip()
+            if stdout:
+                try:
+                    res_data = _json.loads(stdout)
+                except _json.JSONDecodeError:
+                    res_data = {"success": False, "error": "Invalid JSON from runner", "raw": stdout}
+            else:
+                res_data = {"success": proc.returncode == 0, "error": "Process exited with no output" if proc.returncode != 0 else None}
+
+            if all_logs:
+                res_data["logs"] = "\n".join(all_logs)
+
+            # Yield final result
+            yield f"data: {_json.dumps({'type': 'done', 'result': res_data})}\n\n"
+
+        except subprocess.TimeoutExpired:
+            proc.kill()
+            res_data = {"success": False, "error": "Automation timed out after 180 seconds."}
+            if all_logs:
+                res_data["logs"] = "\n".join(all_logs)
+            yield f"data: {_json.dumps({'type': 'done', 'result': res_data})}\n\n"
+        except FileNotFoundError:
+            res_data = {"success": False, "error": "'node' command not found."}
+            yield f"data: {_json.dumps({'type': 'done', 'result': res_data})}\n\n"
+        except Exception as e:
+            res_data = {"success": False, "error": str(e)}
+            if all_logs:
+                res_data["logs"] = "\n".join(all_logs)
+            yield f"data: {_json.dumps({'type': 'done', 'result': res_data})}\n\n"
+        finally:
+            run_success = res_data.get("success", False)
+            run_status = "success" if run_success else ("failed" if res_data else "error")
+            _update_or_create_history(
+                history_id, form_type, payload.url, payload.payload or {},
+                status=run_status,
+                success=run_success,
+                message=res_data.get("message") or res_data.get("error"),
+                filled=res_data.get("filled", 0),
+                errors=res_data.get("errors", []),
+                logs=res_data.get("logs", ""),
+            )
+
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+def _update_or_create_history(
+    history_id: str | None,
+    form_type: str,
+    url: str,
+    payload: dict,
+    status: str = "error",
+    success: bool = False,
+    message: str | None = None,
+    filled: int = 0,
+    errors: list | None = None,
+    logs: str = "",
+):
+    """Update existing history entry by id, or create new one if id not found."""
+    history_entries = _load_history()
+
+    update_fields = {
+        "status": status,
+        "success": success,
+        "message": message,
+        "filled": filled,
+        "errors": errors or [],
+        "logs": logs,
+        "ran_at": datetime.now().isoformat(),
+    }
+
+    if history_id:
+        # Find and update existing entry
+        found = False
+        for entry in history_entries:
+            if entry.get("id") == history_id:
+                entry.update(update_fields)
+                found = True
+                break
+        if not found:
+            # Fallback: create new entry with the given id
+            new_item = {
+                "id": history_id,
+                "timestamp": datetime.now().isoformat(),
+                "form_type": form_type,
+                "url": url,
+                "payload": payload,
+                **update_fields,
+            }
+            history_entries.insert(0, new_item)
+    else:
+        # No pre-saved id — create new entry (backward compat)
+        new_item = {
+            "id": str(uuid.uuid4())[:8],
+            "timestamp": datetime.now().isoformat(),
+            "form_type": form_type,
+            "url": url,
+            "payload": payload,
+            **update_fields,
+        }
+        history_entries.insert(0, new_item)
+
+    _save_history(history_entries)
 
 # App initialization logs
 db.log_audit("system", "Startup", "FastAPI Service initialized.")

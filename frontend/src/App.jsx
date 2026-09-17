@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import * as XLSX from 'xlsx';
 
@@ -767,6 +767,7 @@ function App() {
   const [missingFieldsList, setMissingFieldsList] = useState([]);
   const [shortReasonFieldsList, setShortReasonFieldsList] = useState([]);
   const [jsonValidationErrors, setJsonValidationErrors] = useState([]);
+  const [hirecProgressLog, setHirecProgressLog] = useState([]); // real-time progress events from streaming
 
   // Automation Form Settings state
   const [autoFormTab, setAutoFormTab] = useState('BA'); // 'BA' | 'PM' | 'SE'
@@ -822,6 +823,311 @@ function App() {
     } catch (e) {
       console.error("Failed to fetch automation history", e);
     }
+  };
+
+  // Save JSON payload to history BEFORE running automation
+  const saveJsonToHistory = async (payloadObj, formType, url, comment = '') => {
+    try {
+      const r = await fetch(`${API_BASE}/automation/save-json`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ form_type: formType, url, payload: payloadObj, comment }),
+      });
+      const data = await r.json();
+      if (data.success && data.history_id) {
+        fetchAutomationHistory();
+        return data.history_id;
+      }
+    } catch (e) {
+      console.error('Failed to pre-save JSON to history', e);
+    }
+    return null;
+  };
+
+  // Helper: run hirec automation with streaming progress
+  const runHirecStreamingAutomation = async (payloadObj, historyId, comment = '') => {
+    setHirecRunning(true);
+    setHirecResult(null);
+    setHirecProgressLog([]);
+
+    try {
+      const resp = await fetch(`${API_BASE}/automation/hirec-fill-stream`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: hirecUrl.trim(),
+          comment: comment,
+          cookie_antiforgery: hirecCookieAntiforgery.trim(),
+          cookie_idsrv: hirecCookieIdsrv.trim(),
+          cookie_idsrv_session: hirecCookieIdsrvSession.trim(),
+          form_type: hirecFormType,
+          payload: payloadObj,
+          history_id: historyId,
+        }),
+      });
+
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const event = JSON.parse(line.slice(6));
+              if (event.type === 'done') {
+                setHirecResult(event.result);
+                setHirecStep(3);
+                fetchAutomationHistory();
+              } else {
+                setHirecProgressLog(prev => [...prev, event]);
+              }
+            } catch (e) {
+              // ignore parse errors
+            }
+          }
+        }
+      }
+
+      // Process remaining buffer
+      if (buffer.trim()) {
+        const remaining = buffer.split('\n');
+        for (const line of remaining) {
+          if (line.startsWith('data: ')) {
+            try {
+              const event = JSON.parse(line.slice(6));
+              if (event.type === 'done') {
+                setHirecResult(event.result);
+                setHirecStep(3);
+                fetchAutomationHistory();
+              } else {
+                setHirecProgressLog(prev => [...prev, event]);
+              }
+            } catch (e) {
+              // ignore
+            }
+          }
+        }
+      }
+    } catch (err) {
+      setHirecResult({ success: false, error: err.message });
+      setHirecStep(3);
+      fetchAutomationHistory();
+    } finally {
+      setHirecRunning(false);
+    }
+  };
+
+  const hirecProgressEndRef = useRef(null);
+  useEffect(() => {
+    if (hirecProgressEndRef.current) {
+      hirecProgressEndRef.current.scrollTop = hirecProgressEndRef.current.scrollHeight;
+    }
+  }, [hirecProgressLog]);
+
+  // Derive progress stats from hirecProgressLog
+  const getHirecProgressStats = () => {
+    let total = 0;
+    let filled = 0;
+    let currentPhase = '';
+    let currentMessage = '';
+
+    for (const item of hirecProgressLog) {
+      if (item.total) total = item.total;
+      if (item.totalFields) total = item.totalFields;
+      if (item.filled !== undefined) filled = item.filled;
+      if (item.type === 'phase') {
+        currentPhase = item.phase;
+        currentMessage = item.message;
+      }
+      if (item.type === 'field') {
+        if (item.status === 'ok') {
+          currentMessage = item.kind === 'radio'
+            ? `Điền [Radio] ${item.field} → "${item.value || ''}"`
+            : item.kind === 'reason'
+              ? `Điền [Lý do] ${item.field}`
+              : `Điền [${item.kind}] ${item.field}`;
+        } else if (item.status === 'error') {
+          currentMessage = `Lỗi [${item.field}]: ${item.error}`;
+        }
+      }
+    }
+
+    const percent = total > 0 ? Math.min(100, Math.round((filled / total) * 100)) : 0;
+    return { total, filled, percent, currentPhase, currentMessage };
+  };
+
+  const renderHirecProgressPanel = () => {
+    if (!hirecRunning && (!hirecProgressLog || hirecProgressLog.length === 0 || hirecStep === 3)) {
+      return null;
+    }
+
+    const { total, filled, percent, currentMessage } = getHirecProgressStats();
+
+    return (
+      <div style={{
+        background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85))',
+        border: '1px solid rgba(99, 102, 241, 0.35)',
+        borderRadius: '14px',
+        padding: '16px 20px',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px',
+        margin: '12px 0',
+      }}>
+        {/* Header */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{
+              display: 'inline-block',
+              width: '10px',
+              height: '10px',
+              borderRadius: '50%',
+              backgroundColor: hirecRunning ? '#10b981' : '#6366f1',
+              boxShadow: hirecRunning ? '0 0 10px #10b981' : 'none',
+            }} />
+            <span style={{ fontWeight: 700, fontSize: '0.92rem', color: '#f8fafc' }}>
+              {hirecRunning ? 'Đang thực thi Automation trên Hirec...' : 'Tiến trình Automation'}
+            </span>
+            <span style={{
+              fontSize: '0.72rem',
+              fontWeight: 600,
+              padding: '2px 8px',
+              borderRadius: '12px',
+              background: 'rgba(99, 102, 241, 0.2)',
+              color: '#a5b4fc',
+              border: '1px solid rgba(99, 102, 241, 0.3)',
+            }}>
+              Form {hirecFormType}
+            </span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#38bdf8' }}>
+              {filled} / {total || '?'} mục
+            </span>
+            <span style={{
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              color: '#34d399',
+              background: 'rgba(52, 211, 153, 0.15)',
+              padding: '2px 8px',
+              borderRadius: '8px',
+            }}>
+              {percent}%
+            </span>
+          </div>
+        </div>
+
+        {/* Progress Bar */}
+        <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.08)', borderRadius: '999px', overflow: 'hidden' }}>
+          <div style={{
+            width: `${percent}%`,
+            height: '100%',
+            background: 'linear-gradient(90deg, #6366f1, #3b82f6, #10b981)',
+            borderRadius: '999px',
+            transition: 'width 0.25s ease-out',
+          }} />
+        </div>
+
+        {/* Current status line */}
+        {currentMessage && (
+          <div style={{
+            fontSize: '0.78rem',
+            color: '#94a3b8',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: 'rgba(0,0,0,0.25)',
+            padding: '6px 12px',
+            borderRadius: '8px',
+            border: '1px solid rgba(255,255,255,0.05)',
+          }}>
+            <span style={{ color: '#38bdf8', fontSize: '0.7rem' }}>▶</span>
+            <span style={{ color: '#e2e8f0', fontWeight: 600 }}>{currentMessage}</span>
+          </div>
+        )}
+
+        {/* Live log entries */}
+        <div
+          ref={hirecProgressEndRef}
+          style={{
+            maxHeight: '180px',
+            overflowY: 'auto',
+            background: '#070a12',
+            borderRadius: '8px',
+            padding: '10px 12px',
+            border: '1px solid rgba(255,255,255,0.07)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '5px',
+            fontFamily: 'monospace',
+            fontSize: '0.74rem',
+          }}
+        >
+          {hirecProgressLog.length === 0 ? (
+            <div style={{ color: 'var(--text-muted)', fontStyle: 'italic' }}>Đang kết nối tiến trình automation...</div>
+          ) : (
+            hirecProgressLog.map((ev, idx) => {
+              if (ev.type === 'phase') {
+                return (
+                  <div key={idx} style={{ color: '#a78bfa', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>⚡</span> <span>{ev.message}</span>
+                  </div>
+                );
+              }
+              if (ev.type === 'field') {
+                const isErr = ev.status === 'error';
+                return (
+                  <div key={idx} style={{
+                    color: isErr ? '#f87171' : '#34d399',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    background: isErr ? 'rgba(248,113,113,0.08)' : 'transparent',
+                    padding: isErr ? '2px 4px' : '0',
+                    borderRadius: '4px',
+                  }}>
+                    <span>{isErr ? '❌' : '✅'}</span>
+                    <span style={{ color: isErr ? '#fca5a5' : '#93c5fd', fontWeight: 600 }}>[{ev.kind}]</span>
+                    <span style={{ color: '#f1f5f9' }}>{ev.field}</span>
+                    {ev.value !== undefined && <span style={{ color: '#fbbf24' }}>→ &quot;{String(ev.value)}&quot;</span>}
+                    {ev.error && <span style={{ color: '#f87171' }}>: {ev.error}</span>}
+                  </div>
+                );
+              }
+              if (ev.type === 'log') {
+                return (
+                  <div key={idx} style={{ color: 'var(--text-muted)', opacity: 0.85, fontSize: '0.7rem' }}>
+                    {ev.message}
+                  </div>
+                );
+              }
+              return null;
+            })
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  // Reuse a history item: load its JSON payload, URL, form_type into the editor
+  const reuseHistoryItem = (item) => {
+    setHirecInputMode('json');
+    setHirecDirectJson(JSON.stringify(item.payload || {}, null, 2));
+    if (item.url) setHirecUrl(item.url);
+    if (item.form_type) setHirecFormType(item.form_type);
+    setHirecStep(1);
+    setHirecResult(null);
+    setHirecPayload(null);
+    setJsonValidationErrors([]);
   };
 
   const fetchFormStructures = async () => {
@@ -5000,30 +5306,11 @@ function App() {
                           setHirecRunning(true);
                           setHirecResult(null);
                           setHirecPayload(parsedPayload);
-                          try {
-                            const resp = await fetch(`${API_BASE}/automation/hirec-fill`, {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({
-                                url: hirecUrl.trim(),
-                                comment: '',
-                                cookie_antiforgery: hirecCookieAntiforgery.trim(),
-                                cookie_idsrv: hirecCookieIdsrv.trim(),
-                                cookie_idsrv_session: hirecCookieIdsrvSession.trim(),
-                                form_type: hirecFormType,
-                                payload: parsedPayload,
-                              }),
-                            });
-                            const data = await resp.json();
-                            setHirecResult(data);
-                            setHirecStep(3);
-                            fetchAutomationHistory();
-                          } catch (err) {
-                            setHirecResult({ success: false, error: err.message });
-                            setHirecStep(3);
-                          } finally {
-                            setHirecRunning(false);
-                          }
+
+                          // Pre-save JSON to history before running automation
+                          const historyId = await saveJsonToHistory(parsedPayload, hirecFormType, hirecUrl.trim());
+
+                          await runHirecStreamingAutomation(parsedPayload, historyId, '');
                         }}
                         style={{
                           width: '100%', justifyContent: 'center', padding: '13px 24px',
@@ -5036,6 +5323,9 @@ function App() {
                         {hirecRunning ? 'Đang kiểm tra & chạy automation...' : `▶ Chạy Automation Ngay (2 bước)`}
                       </button>
                     )}
+
+                    {/* Live Progress Panel */}
+                    {renderHirecProgressPanel()}
 
                     {/* Validation errors for JSON Mode */}
                     {jsonValidationErrors.length > 0 && (
@@ -5072,31 +5362,52 @@ function App() {
                       {hirecHistory.length === 0 ? (
                         <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>Chưa có lịch sử chạy nào.</div>
                       ) : (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '220px', overflowY: 'auto' }}>
-                          {hirecHistory.map(item => (
-                            <div key={item.id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--glass-border)', borderRadius: '8px', padding: '10px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
-                              <div style={{ fontSize: '0.78rem', display: 'flex', flexDirection: 'column', gap: '2px', overflow: 'hidden' }}>
-                                <div style={{ fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                  <span style={{ color: item.success ? '#34d399' : '#f87171' }}>{item.success ? '✅ Success' : '❌ Failed'}</span>
-                                  <span style={{ background: 'rgba(99,102,241,0.2)', color: '#a78bfa', padding: '1px 6px', borderRadius: '4px', fontSize: '0.7rem' }}>Form {item.form_type || 'BA'}</span>
-                                  <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>{new Date(item.timestamp).toLocaleString()}</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '320px', overflowY: 'auto' }}>
+                          {hirecHistory.map(item => {
+                            const status = item.status || (item.success ? 'success' : (item.success === false ? 'failed' : 'saved'));
+                            const statusConfig = {
+                              saved:   { icon: '💾', label: 'Đã lưu',      color: '#60a5fa', bg: 'rgba(96,165,250,0.15)' },
+                              success: { icon: '✅', label: 'Thành công',  color: '#34d399', bg: 'rgba(52,211,153,0.15)' },
+                              failed:  { icon: '❌', label: 'Thất bại',    color: '#f87171', bg: 'rgba(248,113,113,0.15)' },
+                              error:   { icon: '⚠️', label: 'Lỗi server', color: '#fbbf24', bg: 'rgba(251,191,36,0.15)' },
+                            };
+                            const sc = statusConfig[status] || statusConfig.failed;
+                            return (
+                              <div key={item.id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--glass-border)', borderRadius: '8px', padding: '10px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
+                                <div style={{ fontSize: '0.78rem', display: 'flex', flexDirection: 'column', gap: '2px', overflow: 'hidden', flex: 1, minWidth: 0 }}>
+                                  <div style={{ fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                                    <span style={{ background: sc.bg, color: sc.color, padding: '2px 8px', borderRadius: '6px', fontSize: '0.72rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
+                                      {sc.icon} {sc.label}
+                                    </span>
+                                    <span style={{ background: 'rgba(99,102,241,0.2)', color: '#a78bfa', padding: '1px 6px', borderRadius: '4px', fontSize: '0.7rem' }}>Form {item.form_type || 'BA'}</span>
+                                    <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>{new Date(item.timestamp).toLocaleString()}</span>
+                                  </div>
+                                  <div style={{ fontFamily: 'monospace', fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                    {item.url}
+                                  </div>
+                                  {item.message && status !== 'saved' && (
+                                    <div style={{ fontSize: '0.7rem', color: sc.color, opacity: 0.85, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                      {item.message}
+                                    </div>
+                                  )}
                                 </div>
-                                <div style={{ fontFamily: 'monospace', fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                  {item.url}
+                                <div style={{ display: 'flex', gap: '6px', flexShrink: 0, flexWrap: 'wrap' }}>
+                                  <button type="button" onClick={() => reuseHistoryItem(item)}
+                                    style={{ padding: '4px 10px', fontSize: '0.72rem', background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.2))', border: '1px solid rgba(99,102,241,0.4)', borderRadius: '6px', color: '#a78bfa', cursor: 'pointer', fontWeight: 700 }}>
+                                    🔄 Reuse
+                                  </button>
+                                  <button type="button" onClick={() => copyToClipboard(item.payload)}
+                                    style={{ padding: '4px 8px', fontSize: '0.72rem', background: 'var(--surface-secondary)', border: '1px solid var(--glass-border)', borderRadius: '6px', color: '#c9d1d9', cursor: 'pointer' }}>
+                                    📋 Copy
+                                  </button>
+                                  <button type="button" onClick={() => downloadJsonFile(item.payload, `hirec_history_${item.form_type}_${item.id}.json`)}
+                                    style={{ padding: '4px 8px', fontSize: '0.72rem', background: 'var(--surface-secondary)', border: '1px solid var(--glass-border)', borderRadius: '6px', color: '#c9d1d9', cursor: 'pointer' }}>
+                                    ⬇ Download
+                                  </button>
                                 </div>
                               </div>
-                              <div style={{ display: 'flex', gap: '6px', flexShrink: 0 }}>
-                                <button type="button" onClick={() => copyToClipboard(item.payload)}
-                                  style={{ padding: '4px 8px', fontSize: '0.72rem', background: 'var(--surface-secondary)', border: '1px solid var(--glass-border)', borderRadius: '6px', color: '#c9d1d9', cursor: 'pointer' }}>
-                                  📋 Copy JSON
-                                </button>
-                                <button type="button" onClick={() => downloadJsonFile(item.payload, `hirec_history_${item.form_type}_${item.id}.json`)}
-                                  style={{ padding: '4px 8px', fontSize: '0.72rem', background: 'var(--surface-secondary)', border: '1px solid var(--glass-border)', borderRadius: '6px', color: '#c9d1d9', cursor: 'pointer' }}>
-                                  ⬇ Download
-                                </button>
-                              </div>
-                            </div>
-                          ))}
+                            );
+                          })}
                         </div>
                       )}
                     </div>
@@ -5167,32 +5478,11 @@ function App() {
                       <button id="hirec-run-btn" className="glow-btn" disabled={hirecRunning || !canRunAutomation}
                         onClick={async () => {
                           if (!canRunAutomation) return;
-                          setHirecRunning(true);
-                          setHirecResult(null);
-                          try {
-                            const resp = await fetch(`${API_BASE}/automation/hirec-fill`, {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({
-                                url: hirecUrl.trim(),
-                                comment: hirecComment.trim(),
-                                cookie_antiforgery: hirecCookieAntiforgery.trim(),
-                                cookie_idsrv: hirecCookieIdsrv.trim(),
-                                cookie_idsrv_session: hirecCookieIdsrvSession.trim(),
-                                form_type: hirecFormType,
-                                payload: hirecPayload,
-                              }),
-                            });
-                            const data = await resp.json();
-                            setHirecResult(data);
-                            setHirecStep(3);
-                            fetchAutomationHistory();
-                          } catch (err) {
-                            setHirecResult({ success: false, error: err.message });
-                            setHirecStep(3);
-                          } finally {
-                            setHirecRunning(false);
-                          }
+
+                          // Pre-save JSON to history before running automation
+                          const historyId = await saveJsonToHistory(hirecPayload, hirecFormType, hirecUrl.trim(), hirecComment.trim());
+
+                          await runHirecStreamingAutomation(hirecPayload, historyId, hirecComment.trim());
                         }}
                         style={{
                           flex: 1, justifyContent: 'center', padding: '10px 24px',
@@ -5205,6 +5495,9 @@ function App() {
                         {hirecRunning ? 'Đang chạy automation...' : `▶ Chạy Automation Form ${hirecFormType}`}
                       </button>
                     </div>
+
+                    {/* Live Progress Panel */}
+                    {renderHirecProgressPanel()}
 
                     {/* Warning Box 1: Missing Fields (Classifier detected insufficient info) */}
                     {missingValues.length > 0 && (
